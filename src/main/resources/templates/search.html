@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>serach</title>
+</head>
+<body>
+    <form method="post" action="/result">
+        入力:<input type="text" name="search" th:value="${search}">
+        <input type="submit" value="クリック">

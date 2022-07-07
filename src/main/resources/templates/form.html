@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>form</title>
+</head>
+<body>
+    <form method="post" action="/form">
+        入力:<input type="text" name="form" th:value="${form}">
+        <input type="submit" value="クリック">
