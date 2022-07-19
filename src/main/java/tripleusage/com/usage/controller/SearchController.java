@@ -25,4 +25,5 @@ public class SearchController {
         model.addAttribute("pokemon", searchService.getPokemon(Id));
         return "/result";
     }
+
 }

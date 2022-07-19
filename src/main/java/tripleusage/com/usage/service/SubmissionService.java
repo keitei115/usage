@@ -16,8 +16,8 @@ public class SubmissionService {
 
     public Pokemon submitPokemon(String name) {
         Pokemon pokemon = new Pokemon();
+        pokemon.setPokemonid(String.valueOf(repository.count()+1));
         pokemon.setName(name);
-        pokemon.setId(String.valueOf(repository.count()+1));
         repository.saveAndFlush(pokemon);
         return pokemon;
     }

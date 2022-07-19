@@ -2,8 +2,6 @@ package tripleusage.com.usage.controller;
 
 //import javax.persistence.Column;
 import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
@@ -16,7 +14,13 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Pokemon {
     @Id
-    //@GeneratedValue(strategy=GenerationType.IDENTITY)
-    private String id;
+    private String pokemonid;
+    private long partyid;
     private String name;
+    private String item;
+    private String ability;
+    private String move1;
+    private String move2;
+    private String move3;
+    private String move4;
 }

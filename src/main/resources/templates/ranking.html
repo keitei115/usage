@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>result</title>
+</head>
+<body>
+    <table>
+
+        <tr th:each="pokemon , stat : ${pokeranking}">
+            <td th:text="${stat.count}"></td>
+            <td th:text="${pokemon.name}"></td>
+            <td th:text="${pokemon.pokemontotal}"></td>
+        </tr>
+
+        <tr th:each="item , stat : ${itemranking}">
+            <td th:text="${stat.count}"></td>
+            <td th:text="${item.item}"></td>
+            <td th:text="${item.itemtotal}"></td>
+        </tr>
+
+        <tr th:each="move , stat : ${moveranking}">
+            <td th:text="${stat.count}"></td>
+            <td th:text="${move.move}"></td>
+            <td th:text="${move.movetotal}"></td>
+        </tr>
+
+      </table>

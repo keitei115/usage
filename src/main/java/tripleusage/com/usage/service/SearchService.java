@@ -17,7 +17,7 @@ public class SearchService {
     public Pokemon getPokemon(String id) {
         Optional<Pokemon> pokeMap = repository.findById(id);
         Pokemon pokemon = new Pokemon();
-        pokemon.setId(pokeMap.orElse(pokemon).getId());
+        pokemon.setPokemonid(pokeMap.orElse(pokemon).getPokemonid());
         pokemon.setName(pokeMap.orElse(pokemon).getName());
         return pokemon;
     }
