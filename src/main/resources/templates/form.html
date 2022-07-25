@@ -5,6 +5,28 @@
     <title>form</title>
 </head>
 <body>
-    <form method="post" action="/form">
-        入力:<input type="text" name="form" th:value="${form}">
+    <form method="post" action="/form" th:object="${form}">
+        ポ1:<input type="text" name="p1" th:value="${p1}"><br>
+        ア1:<input type="text" name="i1" th:value="${i1}"><br>
+        特1:<input type="text" name="a1" th:value="${a1}"><br>
+        技1-1:<input type="text" name="m1_1" th:value="${m1_1}"><br>
+        技1-2:<input type="text" name="m1_2" th:value="${m1_2}"><br>
+        技1-3:<input type="text" name="m1_3" th:value="${m1_3}"><br>
+        技1-4:<input type="text" name="m1_4" th:value="${m1_4}"><br>
+        ポ2:<input type="text" name="p2" th:value="${p2}"><br>
+        ア2:<input type="text" name="i2" th:value="${i2}"><br>
+        特2:<input type="text" name="a2" th:value="${a2}"><br>
+        技2-1:<input type="text" name="m2_1" th:value="${m2_1}"><br>
+        技2-2:<input type="text" name="m2_2" th:value="${m2_2}"><br>
+        技2-3:<input type="text" name="m2_3" th:value="${m2_3}"><br>
+        技2-4:<input type="text" name="m2_4" th:value="${m2_4}"><br>
+        ポ3:<input type="text" name="p3" th:value="${p3}"><br>
+        ア3:<input type="text" name="i3" th:value="${i3}"><br>
+        特3:<input type="text" name="a3" th:value="${a3}"><br>
+        技3-1:<input type="text" name="m3_1" th:value="${m3_1}"><br>
+        技3-2:<input type="text" name="m3_2" th:value="${m3_2}"><br>
+        技3-3:<input type="text" name="m3_3" th:value="${m3_3}"><br>
+        技3-4:<input type="text" name="m3_4" th:value="${m3_4}"><br>
+
         <input type="submit" value="クリック">
+        </form>
