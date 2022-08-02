@@ -1,18 +1,34 @@
 package tripleusage.com.usage.controller;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import javax.validation.constraints.NotBlank;
+
+import tripleusage.com.usage.annotation.PokeCheck;
+import tripleusage.com.usage.annotation.ItemCheck;
+import tripleusage.com.usage.annotation.MoveCheck;
+import tripleusage.com.usage.annotation.AbilityCheck;
+import tripleusage.com.usage.annotation.PersonalCheck;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PokeForm {
+    @NotBlank(message = "Please enter a name")
+    @PokeCheck(message = "Pokemon name is not in the list")
     private String p1;
+    @NotBlank(message = "Please enter a name")
+    @ItemCheck(message = "Item name is not in the list")
     private String i1;
+    @NotBlank(message = "Please enter a name")
+    @AbilityCheck(message = "Ability name is not in the list")
     private String a1;
+    @NotBlank(message = "Please enter a name")
+    @MoveCheck(message = "Move name is not in the list")
     private String m1_1;
     private String m1_2;
     private String m1_3;
@@ -42,5 +58,10 @@ public class PokeForm {
         pokemons.add(returnPokemon(id2, paid, p2, i2, a2, m2_1, m2_2, m2_3, m2_4));
         pokemons.add(returnPokemon(id3, paid, p3, i3, a3, m3_1, m3_2, m3_3, m3_4));
         return pokemons;
+    }
+
+    public List<Boolean> checkPokemon(List<Pokemon> pokemons){
+        List<Boolean> check = new java.util.ArrayList<Boolean>();
+        return check;
     }
 }

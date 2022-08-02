@@ -5,11 +5,11 @@
     <title>form</title>
 </head>
 <body>
-    <form method="post" action="/form" th:object="${form}">
-        ポ1:<input type="text" name="p1" th:value="${p1}"><br>
-        ア1:<input type="text" name="i1" th:value="${i1}"><br>
-        特1:<input type="text" name="a1" th:value="${a1}"><br>
-        技1-1:<input type="text" name="m1_1" th:value="${m1_1}"><br>
+    <form method="post" th:object="${pokeForm}">
+        ポ1:<input type="text" name="p1" th:value="${p1}" th:classappend="${p1e} ? error :  normal" ><br>
+        ア1:<input type="text" name="i1" th:value="${i1}" th:classappend="${i1e} ? error :  normal" ><br>
+        特1:<input type="text" name="a1" th:value="${a1}" th:classappend="${a1e} ? error :  normal" ><br>
+        技1-1:<input type="text" name="m1_1" th:value="${m1_1}" th:classappend="${m1_1e} ? error :  normal" ><br>
         技1-2:<input type="text" name="m1_2" th:value="${m1_2}"><br>
         技1-3:<input type="text" name="m1_3" th:value="${m1_3}"><br>
         技1-4:<input type="text" name="m1_4" th:value="${m1_4}"><br>
@@ -30,3 +30,12 @@
 
         <input type="submit" value="クリック">
         </form>
+
+<style>
+    input.error {
+        background-color: rgb(255, 147, 147);
+    }
+    input.normal {
+        background-color: white;
+    }
+</style>

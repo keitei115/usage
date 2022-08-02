@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>result</title>
+</head>
+<body>
+    <table>
+    <form method="post">
+        <tr th:each="pokemon , stat : ${pokemons}">
+            <td th:text="${stat.count}"></td>
+            <td th:text="${pokemon.name}"></td>
+            <td th:text="${pokemon.item}"></td>
+            <td th:text="${pokemon.ability}"></td>
+            <td th:text="${pokemon.move1}"></td>
+            <td th:text="${pokemon.move2}"></td>
+            <td th:text="${pokemon.move3}"></td>
+            <td th:text="${pokemon.move4}"></td>
+        </tr>
+    </table>
+    よろしいですか？
+    <input type="submit" value="OK" id="okbtn">
+    </form>
+    <input type="submit" value="キャンセル" id="cancelbtn">
+
+    <script>
+        function butotnCancel(){
+            alert('キャンセルしました');
+            window.location.href = 'form';
+        }
+        function buttonOK(){
+            alert('投稿完了しました');
+        }
+        let okbtn = document.getElementById('okbtn');
+        let cancelbtn = document.getElementById('cancelbtn');
+        okbtn.addEventListener('click', buttonOK);
+        cancelbtn.addEventListener('click', butotnCancel);
+    </script>
