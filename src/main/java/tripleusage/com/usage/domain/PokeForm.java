@@ -1,4 +1,4 @@
-package tripleusage.com.usage.controller;
+package tripleusage.com.usage.domain;
 
 import java.util.List;
 

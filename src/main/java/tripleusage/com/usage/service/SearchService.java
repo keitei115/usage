@@ -5,8 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tripleusage.com.usage.domain.Pokemon;
 import tripleusage.com.usage.repository.PokeRepository;
-import tripleusage.com.usage.controller.Pokemon;
 
 
 @Service

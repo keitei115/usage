@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import tripleusage.com.usage.service.NameList;
+import tripleusage.com.usage.domain.PokeForm;
+import tripleusage.com.usage.domain.Pokemon;
 import tripleusage.com.usage.service.SubmissionService;
 
 import org.slf4j.Logger;

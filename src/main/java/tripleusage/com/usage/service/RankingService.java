@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tripleusage.com.usage.repository.PokeRepository;
-import tripleusage.com.usage.controller.PokemonTotal;
-import tripleusage.com.usage.controller.ItemTotal;
-import tripleusage.com.usage.controller.MoveTotal;
+import tripleusage.com.usage.domain.ItemTotal;
+import tripleusage.com.usage.domain.MoveTotal;
+import tripleusage.com.usage.domain.PokemonTotal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

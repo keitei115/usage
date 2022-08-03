@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import tripleusage.com.usage.controller.Pokemon;
-import tripleusage.com.usage.controller.PokemonTotal;
-import tripleusage.com.usage.controller.ItemTotal;
-import tripleusage.com.usage.controller.MoveTotal;
+import tripleusage.com.usage.domain.ItemTotal;
+import tripleusage.com.usage.domain.MoveTotal;
+import tripleusage.com.usage.domain.Pokemon;
+import tripleusage.com.usage.domain.PokemonTotal;
 
 @Repository
 public interface PokeRepository extends JpaRepository<Pokemon, String> {
