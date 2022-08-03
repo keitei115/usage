@@ -5,24 +5,25 @@
     <title>result</title>
 </head>
 <body>
+    <form method="post">
+        <table>
+            <tr th:each="pokemon , stat : ${pokeranking}">
+                <td th:text="${stat.count}"></td>
+                <td><input type="submit" name="name" th:value ="${pokemon.name}"></td>
+            </tr>
+        </table>
+    </form>
+
     <table>
-
-        <tr th:each="pokemon , stat : ${pokeranking}">
-            <td th:text="${stat.count}"></td>
-            <td th:text="${pokemon.name}"></td>
-            <td th:text="${pokemon.pokemontotal}"></td>
-        </tr>
-
         <tr th:each="item , stat : ${itemranking}">
             <td th:text="${stat.count}"></td>
             <td th:text="${item.item}"></td>
-            <td th:text="${item.itemtotal}"></td>
+            <td th:text="${#numbers.formatDecimal(item.itemtotal, 1, 1)}"></td>
         </tr>
 
         <tr th:each="move , stat : ${moveranking}">
             <td th:text="${stat.count}"></td>
             <td th:text="${move.move}"></td>
-            <td th:text="${move.movetotal}"></td>
+            <td th:text="${#numbers.formatDecimal(move.movetotal, 1, 1)}"></td>
         </tr>
-
-      </table>
+    </table>

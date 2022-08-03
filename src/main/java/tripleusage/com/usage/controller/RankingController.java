@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.slf4j.Logger;
@@ -24,8 +23,16 @@ public class RankingController {
     @GetMapping("/ranking")
     public String getPokemonRanking(Model model) {
         model.addAttribute("pokeranking", rankingService.PokemonRanking());
-        model.addAttribute("itemranking", rankingService.ItemRanking("ランドロス霊"));
-        model.addAttribute("moveranking", rankingService.MoveRanking("ランドロス霊"));
+        model.addAttribute("itemranking", rankingService.ItemRanking(rankingService.PokemonRanking().get(0).getName()));
+        model.addAttribute("moveranking", rankingService.MoveRanking(rankingService.PokemonRanking().get(0).getName()));
+        return "ranking";
+    }
+
+    @PostMapping("/ranking")
+    public String postPokemonRanking(@RequestParam String name, Model model) {
+        model.addAttribute("pokeranking", rankingService.PokemonRanking());
+        model.addAttribute("itemranking", rankingService.ItemRanking(name));
+        model.addAttribute("moveranking", rankingService.MoveRanking(name));
         return "ranking";
     }
 }

@@ -7,3 +7,9 @@ INSERT INTO POKEMON(pokemonid,partyid,name,item,ability,move1,move2,move3,move4)
 INSERT INTO POKEMON(pokemonid,partyid,name,item,ability,move1,move2,move3,move4) VALUES('7','3','ランドロス霊','とつげきチョッキ','いかく','じしん','いわなだれ','ばかぢから','はたきおとす');
 INSERT INTO POKEMON(pokemonid,partyid,name,item,ability,move1,move2,move3,move4) VALUES('8','3','リザードン','メガストーンY','サンパワー','かえんほうしゃ','ソーラービーム','まもる','ねっぷう');
 INSERT INTO POKEMON(pokemonid,partyid,name,item,ability,move1,move2,move3,move4) VALUES('9','3','ブルンゲル','オボンのみ','のろわれボディ','シャドーボール','しおふき','じこさいせい','トリックルーム');
+INSERT INTO POKEMON(pokemonid,partyid,name,item,ability,move1,move2,move3,move4) VALUES('10','4','ヘラクロス','かえんだま','こんじょう','インファイト','はたきおとす','フェイント','メガホーン');
+INSERT INTO POKEMON(pokemonid,partyid,name,item,ability,move1,move2,move3,move4) VALUES('11','4','ニンフィア','オボンのみ','フェアリースキン','あくび','ひかりのかべ','ハイパーボイス','まもる');
+INSERT INTO POKEMON(pokemonid,partyid,name,item,ability,move1,move2,move3,move4) VALUES('12','4','ブルンゲル','オボンのみ','のろわれボディ','しおふき','シャドーボール','じこさいせい','トリックルーム');
+INSERT INTO POKEMON(pokemonid,partyid,name,item,ability,move1,move2,move3,move4) VALUES('13','5','ハリテヤマ','ラムのみ','あついしぼう','インファイト','はたきおとす','フェイント','ねこだまし');
+INSERT INTO POKEMON(pokemonid,partyid,name,item,ability,move1,move2,move3,move4) VALUES('14','5','ランドロス霊','とつげきチョッキ','いかく','だいちのちから','いわなだれ','めざめるパワー','とんぼがえり');
+INSERT INTO POKEMON(pokemonid,partyid,name,item,ability,move1,move2,move3,move4) VALUES('15','5','ヘラクロス','とつげきチョッキ','じしんかじょう','かわらわり','いわなだれ','まもる','はたきおとす');
