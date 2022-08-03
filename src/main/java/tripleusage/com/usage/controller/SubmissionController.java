@@ -30,8 +30,12 @@ public class SubmissionController {
     @Autowired
     private SubmissionService submissionService;
 
-    private static final NameList nameList = new NameList();
     private static final Logger logger = LoggerFactory.getLogger(SubmissionController.class);
+
+    @ModelAttribute
+    PokeForm pokeForm() {
+        return new PokeForm();
+    }
 
     @GetMapping("/form")
     public String getSearch(Model model) {
@@ -63,9 +67,6 @@ public class SubmissionController {
             List<String> errors = result.getFieldErrors().stream().map(x -> x.getDefaultMessage()).distinct().collect(Collectors.toList());
             List<String> errorfields = result.getFieldErrors().stream().map(x -> x.getField()).distinct().collect(Collectors.toList());
             logger.info("Errors: " + errorfields.toString());
-            for (String errorfield : errorfields) {
-                model.addAttribute(errorfield+"e",true);
-            }
             return "form";
         }
         List<Pokemon> pokemons = submissionService.getPokemonList(pokeform);

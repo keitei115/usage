@@ -6,27 +6,27 @@
 </head>
 <body>
     <form method="post" th:object="${pokeForm}">
-        ポ1:<input type="text" name="p1" th:value="${p1}" th:classappend="${p1e} ? error :  normal" ><br>
-        ア1:<input type="text" name="i1" th:value="${i1}" th:classappend="${i1e} ? error :  normal" ><br>
-        特1:<input type="text" name="a1" th:value="${a1}" th:classappend="${a1e} ? error :  normal" ><br>
-        技1-1:<input type="text" name="m1_1" th:value="${m1_1}" th:classappend="${m1_1e} ? error :  normal" ><br>
-        技1-2:<input type="text" name="m1_2" th:value="${m1_2}"><br>
-        技1-3:<input type="text" name="m1_3" th:value="${m1_3}"><br>
-        技1-4:<input type="text" name="m1_4" th:value="${m1_4}"><br>
-        ポ2:<input type="text" name="p2" th:value="${p2}"><br>
-        ア2:<input type="text" name="i2" th:value="${i2}"><br>
-        特2:<input type="text" name="a2" th:value="${a2}"><br>
-        技2-1:<input type="text" name="m2_1" th:value="${m2_1}"><br>
-        技2-2:<input type="text" name="m2_2" th:value="${m2_2}"><br>
-        技2-3:<input type="text" name="m2_3" th:value="${m2_3}"><br>
-        技2-4:<input type="text" name="m2_4" th:value="${m2_4}"><br>
-        ポ3:<input type="text" name="p3" th:value="${p3}"><br>
-        ア3:<input type="text" name="i3" th:value="${i3}"><br>
-        特3:<input type="text" name="a3" th:value="${a3}"><br>
-        技3-1:<input type="text" name="m3_1" th:value="${m3_1}"><br>
-        技3-2:<input type="text" name="m3_2" th:value="${m3_2}"><br>
-        技3-3:<input type="text" name="m3_3" th:value="${m3_3}"><br>
-        技3-4:<input type="text" name="m3_4" th:value="${m3_4}"><br>
+        ポ1:<input type="text" name="p1" th:value="*{p1}" th:errorclass="error"><br>
+        ア1:<input type="text" name="i1" th:value="*{i1}" th:errorclass="error"><br>
+        特1:<input type="text" name="a1" th:value="*{a1}" th:errorclass="error"><br>
+        技1-1:<input type="text" name="m1_1" th:value="*{m1_1}" th:errorclass="error"><br>
+        技1-2:<input type="text" name="m1_2" th:value="*{m1_2}"><br>
+        技1-3:<input type="text" name="m1_3" th:value="*{m1_3}"><br>
+        技1-4:<input type="text" name="m1_4" th:value="*{m1_4}"><br>
+        ポ2:<input type="text" name="p2" th:value="*{p2}"><br>
+        ア2:<input type="text" name="i2" th:value="*{i2}"><br>
+        特2:<input type="text" name="a2" th:value="*{a2}"><br>
+        技2-1:<input type="text" name="m2_1" th:value="*{m2_1}"><br>
+        技2-2:<input type="text" name="m2_2" th:value="*{m2_2}"><br>
+        技2-3:<input type="text" name="m2_3" th:value="*{m2_3}"><br>
+        技2-4:<input type="text" name="m2_4" th:value="*{m2_4}"><br>
+        ポ3:<input type="text" name="p3" th:value="*{p3}"><br>
+        ア3:<input type="text" name="i3" th:value="*{i3}"><br>
+        特3:<input type="text" name="a3" th:value="*{a3}"><br>
+        技3-1:<input type="text" name="m3_1" th:value="*{m3_1}"><br>
+        技3-2:<input type="text" name="m3_2" th:value="*{m3_2}"><br>
+        技3-3:<input type="text" name="m3_3" th:value="*{m3_3}"><br>
+        技3-4:<input type="text" name="m3_4" th:value="*{m3_4}"><br>
 
         <input type="submit" value="クリック">
         </form>
