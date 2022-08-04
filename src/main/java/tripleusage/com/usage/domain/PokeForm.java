@@ -1,62 +1,136 @@
 package tripleusage.com.usage.domain;
 
 import java.util.List;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import tripleusage.com.usage.annotation.PokeCheck;
 import tripleusage.com.usage.annotation.ItemCheck;
 import tripleusage.com.usage.annotation.MoveCheck;
 import tripleusage.com.usage.annotation.AbilityCheck;
-import tripleusage.com.usage.annotation.PersonalCheck;
+import tripleusage.com.usage.annotation.NatureCheck;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PokeForm {
-    @NotBlank(message = "Please enter a name")
-    @PokeCheck(message = "Pokemon name is not in the list")
+    @NotBlank(message = "Please enter a name") @PokeCheck(message = "Pokemon name is not in the list")
     private String p1;
-    @NotBlank(message = "Please enter a name")
-    @ItemCheck(message = "Item name is not in the list")
+    @NotBlank(message = "Please enter a name") @ItemCheck(message = "Item name is not in the list")
     private String i1;
-    @NotBlank(message = "Please enter a name")
-    @AbilityCheck(message = "Ability name is not in the list")
+    @NotBlank(message = "Please enter a name") @AbilityCheck(message = "Ability name is not in the list")
     private String a1;
-    @NotBlank(message = "Please enter a name")
-    @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "Please enter a name") @NatureCheck(message = "Nature name is not in the list")
+    private String n1;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
     private String m1_1;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
     private String m1_2;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
     private String m1_3;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
     private String m1_4;
+    @NotBlank(message = "Please enter a name") @PokeCheck(message = "Pokemon name is not in the list")
     private String p2;
+    @NotBlank(message = "Please enter a name") @ItemCheck(message = "Item name is not in the list")
     private String i2;
+    @NotBlank(message = "Please enter a name") @AbilityCheck(message = "Ability name is not in the list")
     private String a2;
+    @NotBlank(message = "Please enter a name") @NatureCheck(message = "Nature name is not in the list")
+    private String n2;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
     private String m2_1;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
     private String m2_2;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
     private String m2_3;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
     private String m2_4;
+    @NotBlank(message = "Please enter a name") @PokeCheck(message = "Pokemon name is not in the list")
     private String p3;
+    @NotBlank(message = "Please enter a name") @ItemCheck(message = "Item name is not in the list")
     private String i3;
+    @NotBlank(message = "Please enter a name") @AbilityCheck(message = "Ability name is not in the list")
     private String a3;
+    @NotBlank(message = "Please enter a name") @NatureCheck(message = "Nature name is not in the list")
+    private String n3;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
     private String m3_1;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
     private String m3_2;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
     private String m3_3;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
     private String m3_4;
+    @NotBlank(message = "Please enter a name") @PokeCheck(message = "Pokemon name is not in the list")
+    private String p4;
+    @NotBlank(message = "Please enter a name") @ItemCheck(message = "Item name is not in the list")
+    private String i4;
+    @NotBlank(message = "Please enter a name") @AbilityCheck(message = "Ability name is not in the list")
+    private String a4;
+    @NotBlank(message = "Please enter a name") @NatureCheck(message = "Nature name is not in the list")
+    private String n4;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    private String m4_1;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    private String m4_2;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    private String m4_3;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    private String m4_4;
+    @NotBlank(message = "Please enter a name") @PokeCheck(message = "Pokemon name is not in the list")
+    private String p5;
+    @NotBlank(message = "Please enter a name") @ItemCheck(message = "Item name is not in the list")
+    private String i5;
+    @NotBlank(message = "Please enter a name") @AbilityCheck(message = "Ability name is not in the list")
+    private String a5;
+    @NotBlank(message = "Please enter a name") @NatureCheck(message = "Nature name is not in the list")
+    private String n5;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    private String m5_1;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    private String m5_2;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    private String m5_3;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    private String m5_4;
+    @NotBlank(message = "Please enter a name") @PokeCheck(message = "Pokemon name is not in the list")
+    private String p6;
+    @NotBlank(message = "Please enter a name") @ItemCheck(message = "Item name is not in the list")
+    private String i6;
+    @NotBlank(message = "Please enter a name") @AbilityCheck(message = "Ability name is not in the list")
+    private String a6;
+    @NotBlank(message = "Please enter a name") @NatureCheck(message = "Nature name is not in the list")
+    private String n6;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    private String m6_1;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    private String m6_2;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    private String m6_3;
+    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    private String m6_4;
+    @NotBlank(message = "Please enter a name") @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = "Date format is not valid")
+    private String d;
 
-    private Pokemon returnPokemon(String poid, long paid, String n, String i,String a,String m1,String m2,String m3,String m4){
-        return new Pokemon(poid, paid, n, i, a, m1, m2, m3, m4);
+    private Pokemon returnPokemon(String poid, long paid, String p, String i, String a, String n, String m1, String m2, String m3, String m4, LocalDate d) {
+        return new Pokemon(poid, paid, p, i, a, n, m1, m2, m3, m4, d);
     }
-
-    public List<Pokemon> getPokemonList(String id1, String id2, String id3, long paid){
+    public List<Pokemon> getPokemonList(String id1, String id2, String id3, String id4, String id5, String id6, long paid){
         List<Pokemon> pokemons = new java.util.ArrayList<Pokemon>();
-        pokemons.add(returnPokemon(id1, paid, p1, i1, a1, m1_1, m1_2, m1_3, m1_4));
-        pokemons.add(returnPokemon(id2, paid, p2, i2, a2, m2_1, m2_2, m2_3, m2_4));
-        pokemons.add(returnPokemon(id3, paid, p3, i3, a3, m3_1, m3_2, m3_3, m3_4));
+        pokemons.add(returnPokemon(id1, paid, p1, i1, a1, n1, m1_1, m1_2, m1_3, m1_4, LocalDate.parse(d, DateTimeFormatter.ISO_DATE)));
+        pokemons.add(returnPokemon(id2, paid, p2, i2, a2, n2, m2_1, m2_2, m2_3, m2_4, LocalDate.parse(d, DateTimeFormatter.ISO_DATE)));
+        pokemons.add(returnPokemon(id3, paid, p3, i3, a3, n3, m3_1, m3_2, m3_3, m3_4, LocalDate.parse(d, DateTimeFormatter.ISO_DATE)));
+        pokemons.add(returnPokemon(id4, paid, p4, i4, a4, n4, m4_1, m4_2, m4_3, m4_4, LocalDate.parse(d, DateTimeFormatter.ISO_DATE)));
+        pokemons.add(returnPokemon(id5, paid, p5, i5, a5, n5, m5_1, m5_2, m5_3, m5_4, LocalDate.parse(d, DateTimeFormatter.ISO_DATE)));
+        pokemons.add(returnPokemon(id6, paid, p6, i6, a6, n6, m6_1, m6_2, m6_3, m6_4, LocalDate.parse(d, DateTimeFormatter.ISO_DATE)));
         return pokemons;
     }
 

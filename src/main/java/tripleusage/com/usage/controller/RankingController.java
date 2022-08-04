@@ -25,6 +25,7 @@ public class RankingController {
         model.addAttribute("pokeranking", rankingService.PokemonRanking());
         model.addAttribute("itemranking", rankingService.ItemRanking(rankingService.PokemonRanking().get(0).getName()));
         model.addAttribute("moveranking", rankingService.MoveRanking(rankingService.PokemonRanking().get(0).getName()));
+        model.addAttribute("natureranking", rankingService.NatureRanking(rankingService.PokemonRanking().get(0).getName()));
         return "ranking";
     }
 
@@ -33,6 +34,7 @@ public class RankingController {
         model.addAttribute("pokeranking", rankingService.PokemonRanking());
         model.addAttribute("itemranking", rankingService.ItemRanking(name));
         model.addAttribute("moveranking", rankingService.MoveRanking(name));
+        model.addAttribute("natureranking", rankingService.NatureRanking(name));
         return "ranking";
     }
 }

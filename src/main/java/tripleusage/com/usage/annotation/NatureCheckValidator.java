@@ -5,9 +5,9 @@ import javax.validation.ConstraintValidatorContext;
 
 import tripleusage.com.usage.service.NameList;
 
-public class PersonalCheckValidator implements ConstraintValidator<PersonalCheck, String> {
+public class NatureCheckValidator implements ConstraintValidator<NatureCheck, String> {
     @Override
-    public void initialize(PersonalCheck constraintAnnotation) {
+    public void initialize(NatureCheck constraintAnnotation) {
     }
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {

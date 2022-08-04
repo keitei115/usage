@@ -13,9 +13,9 @@ import java.lang.annotation.Documented;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = PersonalCheckValidator.class)
-public @interface PersonalCheck {
-    String message() default "personal is not in the list";
+@Constraint(validatedBy = NatureCheckValidator.class)
+public @interface NatureCheck {
+    String message() default "nature is not in the list";
     Class<?>[] groups() default {};
     Class<? extends Payload >[] payload() default {};
 
@@ -23,6 +23,6 @@ public @interface PersonalCheck {
     @Retention(RetentionPolicy.RUNTIME)
     @Documented
     @interface List {
-        PersonalCheck[] value();
+        NatureCheck[] value();
     }
 }

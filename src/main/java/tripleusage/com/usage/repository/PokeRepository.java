@@ -11,6 +11,7 @@ import tripleusage.com.usage.domain.ItemTotal;
 import tripleusage.com.usage.domain.MoveTotal;
 import tripleusage.com.usage.domain.Pokemon;
 import tripleusage.com.usage.domain.PokemonTotal;
+import tripleusage.com.usage.domain.NatureTotal;
 
 @Repository
 public interface PokeRepository extends JpaRepository<Pokemon, String> {
@@ -22,6 +23,9 @@ public interface PokeRepository extends JpaRepository<Pokemon, String> {
 
     @Query(value = "SELECT MOVE1 AS MOVE,COUNT(*) / (SELECT CAST(COUNT(*) AS REAL) FROM POKEMON WHERE NAME = ?1 ) * 100.0 AS movetotal FROM (SELECT MOVE1 FROM POKEMON WHERE NAME = ?1 UNION ALL SELECT MOVE2 FROM POKEMON WHERE NAME = ?1 UNION ALL SELECT MOVE3 FROM POKEMON WHERE NAME = ?1 UNION ALL SELECT MOVE4 FROM POKEMON WHERE NAME = ?1)  GROUP BY MOVE1 ORDER BY movetotal DESC LIMIT 30", nativeQuery = true)
     List<MoveTotal> getMoveTotal(@Param("name") String name);
+
+    @Query(value = "SELECT nature, COUNT(nature) / (SELECT CAST(COUNT(nature) AS REAL) FROM pokemon WHERE name = ?1) * 100.0 AS naturetotal FROM pokemon WHERE name = ?1 GROUP BY nature ORDER BY naturetotal DESC LIMIT 25", nativeQuery = true)
+    List<NatureTotal> getNatureTotal(@Param("name") String name);
 
     @Query(value = "SELECT MAX(partyid) FROM POKEMON", nativeQuery = true)
     Long maxPartyId();

@@ -1,5 +1,7 @@
 package tripleusage.com.usage.domain;
 
+import java.time.LocalDate;
+
 //import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,8 +21,10 @@ public class Pokemon {
     private String name;
     private String item;
     private String ability;
+    private String nature;
     private String move1;
     private String move2;
     private String move3;
     private String move4;
+    private LocalDate date;
 }

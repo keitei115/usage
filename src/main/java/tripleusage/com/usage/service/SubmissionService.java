@@ -16,7 +16,7 @@ public class SubmissionService {
 
     public List<Pokemon> getPokemonList(PokeForm pokeForm) {
         long id = repository.count();
-        List<Pokemon> pokemons = pokeForm.getPokemonList(id+1+"", id+2+"", id+3+"", repository.maxPartyId()+1);
+        List<Pokemon> pokemons = pokeForm.getPokemonList(id+1+"", id+2+"", id+3+"", id+4+"", id+5+"", id+6+"", repository.maxPartyId()+1);
         return pokemons;
     }
 

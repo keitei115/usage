@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import tripleusage.com.usage.repository.PokeRepository;
 import tripleusage.com.usage.domain.ItemTotal;
 import tripleusage.com.usage.domain.MoveTotal;
+import tripleusage.com.usage.domain.NatureTotal;
 import tripleusage.com.usage.domain.PokemonTotal;
 
 import org.slf4j.Logger;
@@ -31,6 +32,10 @@ public class RankingService {
 
     public List<MoveTotal> MoveRanking(String pokemom) {
         return repository.getMoveTotal(pokemom);
+        }
+
+    public List<NatureTotal> NatureRanking(String pokemom) {
+        return repository.getNatureTotal(pokemom);
         }
 }
 

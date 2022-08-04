@@ -20,10 +20,16 @@
             <td th:text="${item.item}"></td>
             <td th:text="${#numbers.formatDecimal(item.itemtotal, 1, 1)}"></td>
         </tr>
-
+    <br>
         <tr th:each="move , stat : ${moveranking}">
             <td th:text="${stat.count}"></td>
             <td th:text="${move.move}"></td>
             <td th:text="${#numbers.formatDecimal(move.movetotal, 1, 1)}"></td>
+        </tr>
+    <br>
+        <tr th:each="nature , stat : ${natureranking}">
+            <td th:text="${stat.count}"></td>
+            <td th:text="${nature.nature}"></td>
+            <td th:text="${#numbers.formatDecimal(nature.naturetotal, 1, 1)}"></td>
         </tr>
     </table>
