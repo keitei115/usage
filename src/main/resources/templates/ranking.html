@@ -17,6 +17,7 @@
     </form>
 
     <p th:text="${before}"></p> ~ <p th:text="${after}"></p>
+    <p th:text="${error}"></p>
     <table>
         <tr th:each="item , stat : ${itemranking}">
             <td th:text="${stat.count}"></td>

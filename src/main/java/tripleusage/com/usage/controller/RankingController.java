@@ -48,6 +48,18 @@ public class RankingController {
         if (rankingService.checkDate(before, after) == false) {
             before = "2014-11-21";
             after = LocalDate.now().toString();
+            model.addAttribute("error", "検索日付が不正です。");
+        }
+        try {
+            rankingService.PokemonRanking(before, after).get(0).getName();
+        } catch (Exception e) {
+            model.addAttribute("error", "検索範囲にポケモンがいませんでした。");
+            HttpSession session = request.getSession();
+            session.setAttribute("before", before);
+            session.setAttribute("after", after);
+            model.addAttribute("before", before);
+            model.addAttribute("after", after);
+            return "ranking";
         }
         String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
         HttpSession session = request.getSession();
