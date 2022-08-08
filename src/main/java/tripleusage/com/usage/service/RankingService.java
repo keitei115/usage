@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 @Service
 public class RankingService {
 
-    private static final Logger logger = LoggerFactory.getLogger(RankingService.class);
+    //private static final Logger logger = LoggerFactory.getLogger(RankingService.class);
 
     @Autowired
     private PokeRepository repository;
@@ -47,19 +47,15 @@ public class RankingService {
             Date beforeDate = sdf.parse(before);
             Date afterDate = sdf.parse(after);
             if (beforeDate.compareTo(afterDate) > 0) {
-                logger.info("beforeDate is after afterDate");
                 return false;
             } else {
                 if (beforeDate.compareTo(sdf.parse("2000-01-01")) < 0 || afterDate.compareTo(sdf.parse("3000-12-31")) > 0) {
-                    logger.info("date is out of range");
                     return false;
                 } else {
-                    logger.info("date is in range");
                     return true;
                 }
             }
         } catch (Exception e) {
-            logger.info("date is not valid");
             return false;
         }
     }

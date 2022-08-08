@@ -15,8 +15,6 @@ import tripleusage.com.usage.domain.NatureTotal;
 
 @Repository
 public interface PokeRepository extends JpaRepository<Pokemon, String> {
-//    @Query(value = "SELECT NAME, COUNT(NAME) AS pokemontotal FROM POKEMON GROUP BY NAME ORDER BY pokemontotal DESC", nativeQuery = true)
-//    List<PokemonTotal> getPokemonTotal();
     @Query(value = "SELECT NAME, COUNT(NAME) AS pokemontotal FROM POKEMON WHERE DATE BETWEEN ?1 AND ?2 GROUP BY NAME ORDER BY pokemontotal DESC", nativeQuery = true)
     List<PokemonTotal> getPokemonTotal(String before, String after);
     @Query(value = "SELECT item, COUNT(item) / (SELECT CAST(COUNT(item) AS REAL) FROM pokemon WHERE name = ?1 AND date BETWEEN ?2 AND ?3) * 100.0 AS itemtotal FROM pokemon WHERE name = ?1 AND date BETWEEN ?2 AND ?3 GROUP BY item ORDER BY itemtotal DESC LIMIT 20", nativeQuery = true)
