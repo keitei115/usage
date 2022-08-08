@@ -1,9 +1,7 @@
 package tripleusage.com.usage.service;
 
 import java.util.List;
-import java.util.Date;
-
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,14 +40,13 @@ public class RankingService {
         }
 
     public Boolean checkDate(String before, String after) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            Date beforeDate = sdf.parse(before);
-            Date afterDate = sdf.parse(after);
+            LocalDate beforeDate = LocalDate.parse(before);
+            LocalDate afterDate = LocalDate.parse(after);
             if (beforeDate.compareTo(afterDate) > 0) {
                 return false;
             } else {
-                if (beforeDate.compareTo(sdf.parse("2000-01-01")) < 0 || afterDate.compareTo(sdf.parse("2999-12-31")) > 0) {
+                if (beforeDate.compareTo(LocalDate.parse("2000-01-01")) < 0 || afterDate.compareTo(LocalDate.parse("2999-12-31")) > 0) {
                     return false;
                 } else {
                     return true;
