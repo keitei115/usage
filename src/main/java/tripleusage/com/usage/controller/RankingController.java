@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.Date;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -60,8 +58,9 @@ public class RankingController {
     @PostMapping(params = "name" , value = "/ranking")
     public String postPokemonRanking(@RequestParam String name, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        String before = (String) session.getAttribute("before");
-        String after = (String) session.getAttribute("after");
+        //String before = (String) session.getAttribute("before");
+        String before = session.getAttribute("before").toString();
+        String after = session.getAttribute("after").toString();
         model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
         model.addAttribute("itemranking", rankingService.ItemRanking(name, before, after));
         model.addAttribute("moveranking", rankingService.MoveRanking(name, before, after));

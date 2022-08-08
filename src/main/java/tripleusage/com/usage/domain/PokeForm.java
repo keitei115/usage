@@ -9,13 +9,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 import tripleusage.com.usage.annotation.PokeCheck;
 import tripleusage.com.usage.annotation.ItemCheck;
 import tripleusage.com.usage.annotation.MoveCheck;
 import tripleusage.com.usage.annotation.AbilityCheck;
 import tripleusage.com.usage.annotation.NatureCheck;
+import tripleusage.com.usage.annotation.DateCheck;
 
 @Data
 @NoArgsConstructor
@@ -117,7 +117,7 @@ public class PokeForm {
     private String m6_3;
     @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m6_4;
-    @NotBlank(message = "入力していない欄があります") @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = "Date format is not valid")
+    @NotBlank(message = "入力していない欄があります") @DateCheck(message = "日付が間違っています")
     private String d;
 
     private Pokemon returnPokemon(String poid, long paid, String p, String i, String a, String n, String m1, String m2, String m3, String m4, LocalDate d) {

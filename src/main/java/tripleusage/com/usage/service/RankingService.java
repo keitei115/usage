@@ -49,7 +49,7 @@ public class RankingService {
             if (beforeDate.compareTo(afterDate) > 0) {
                 return false;
             } else {
-                if (beforeDate.compareTo(sdf.parse("2000-01-01")) < 0 || afterDate.compareTo(sdf.parse("3000-12-31")) > 0) {
+                if (beforeDate.compareTo(sdf.parse("2000-01-01")) < 0 || afterDate.compareTo(sdf.parse("2999-12-31")) > 0) {
                     return false;
                 } else {
                     return true;
