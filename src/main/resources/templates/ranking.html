@@ -7,6 +7,8 @@
 <body>
     <form method="post">
         <table>
+            <input type="date" name="before" value="2014-11-21"> ~ <input type="date" name="after" id="d" th:value="${after}">
+            <input type="submit" value="クリック" name = "date">
             <tr th:each="pokemon , stat : ${pokeranking}">
                 <td th:text="${stat.count}"></td>
                 <td><input type="submit" name="name" th:value ="${pokemon.name}"></td>
@@ -33,3 +35,14 @@
             <td th:text="${#numbers.formatDecimal(nature.naturetotal, 1, 1)}"></td>
         </tr>
     </table>
+
+    <script>
+        window.onload = function() {
+            var today = new Date();
+            today.setDate(today.getDate());
+            var y = today.getFullYear();
+            var m = ("0" + (today.getMonth() + 1)).slice(-2);
+            var d = ("0" + today.getDate()).slice(-2);
+            document.getElementById("d").value = y + "-" + m + "-" + d;
+        }
+    </script>

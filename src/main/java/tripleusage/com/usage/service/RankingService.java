@@ -1,6 +1,9 @@
 package tripleusage.com.usage.service;
 
 import java.util.List;
+import java.util.Date;
+
+import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,25 +20,48 @@ import org.slf4j.LoggerFactory;
 @Service
 public class RankingService {
 
-    //private static final Logger logger = LoggerFactory.getLogger(RankingService.class);
+    private static final Logger logger = LoggerFactory.getLogger(RankingService.class);
 
     @Autowired
     private PokeRepository repository;
 
-    public List<PokemonTotal> PokemonRanking() {
-        return repository.getPokemonTotal();
+    public List<PokemonTotal> PokemonRanking(String before, String after) {
+        return repository.getPokemonTotal(before, after);
         }
 
-    public List<ItemTotal> ItemRanking(String pokemom) {
-        return repository.getItemTotal(pokemom);
+    public List<ItemTotal> ItemRanking(String pokemom, String before, String after) {
+        return repository.getItemTotal(pokemom, before, after);
         }
 
-    public List<MoveTotal> MoveRanking(String pokemom) {
-        return repository.getMoveTotal(pokemom);
+    public List<MoveTotal> MoveRanking(String pokemom, String before, String after) {
+        return repository.getMoveTotal(pokemom, before, after);
         }
 
-    public List<NatureTotal> NatureRanking(String pokemom) {
-        return repository.getNatureTotal(pokemom);
+    public List<NatureTotal> NatureRanking(String pokemom, String before, String after) {
+        return repository.getNatureTotal(pokemom, before, after);
         }
+
+    public Boolean checkDate(String before, String after) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date beforeDate = sdf.parse(before);
+            Date afterDate = sdf.parse(after);
+            if (beforeDate.compareTo(afterDate) > 0) {
+                logger.info("beforeDate is after afterDate");
+                return false;
+            } else {
+                if (beforeDate.compareTo(sdf.parse("2000-01-01")) < 0 || afterDate.compareTo(sdf.parse("3000-12-31")) > 0) {
+                    logger.info("date is out of range");
+                    return false;
+                } else {
+                    logger.info("date is in range");
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            logger.info("date is not valid");
+            return false;
+        }
+    }
 }
 

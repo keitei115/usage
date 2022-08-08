@@ -21,103 +21,103 @@ import tripleusage.com.usage.annotation.NatureCheck;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PokeForm {
-    @NotBlank(message = "Please enter a name") @PokeCheck(message = "Pokemon name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @PokeCheck(message = "ポケモンの名前が間違っています")
     private String p1;
-    @NotBlank(message = "Please enter a name") @ItemCheck(message = "Item name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @ItemCheck(message = "アイテムの名前が間違っています")
     private String i1;
-    @NotBlank(message = "Please enter a name") @AbilityCheck(message = "Ability name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @AbilityCheck(message = "特性の名前が間違っています")
     private String a1;
-    @NotBlank(message = "Please enter a name") @NatureCheck(message = "Nature name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @NatureCheck(message = "性格の名前が間違っています")
     private String n1;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m1_1;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m1_2;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m1_3;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m1_4;
-    @NotBlank(message = "Please enter a name") @PokeCheck(message = "Pokemon name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @PokeCheck(message = "ポケモンの名前が間違っています")
     private String p2;
-    @NotBlank(message = "Please enter a name") @ItemCheck(message = "Item name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @ItemCheck(message = "アイテムの名前が間違っています")
     private String i2;
-    @NotBlank(message = "Please enter a name") @AbilityCheck(message = "Ability name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @AbilityCheck(message = "特性の名前が間違っています")
     private String a2;
-    @NotBlank(message = "Please enter a name") @NatureCheck(message = "Nature name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @NatureCheck(message = "性格の名前が間違っています")
     private String n2;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m2_1;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m2_2;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m2_3;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m2_4;
-    @NotBlank(message = "Please enter a name") @PokeCheck(message = "Pokemon name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @PokeCheck(message = "ポケモンの名前が間違っています")
     private String p3;
-    @NotBlank(message = "Please enter a name") @ItemCheck(message = "Item name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @ItemCheck(message = "アイテムの名前が間違っています")
     private String i3;
-    @NotBlank(message = "Please enter a name") @AbilityCheck(message = "Ability name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @AbilityCheck(message = "特性の名前が間違っています")
     private String a3;
-    @NotBlank(message = "Please enter a name") @NatureCheck(message = "Nature name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @NatureCheck(message = "性格の名前が間違っています")
     private String n3;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m3_1;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m3_2;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m3_3;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m3_4;
-    @NotBlank(message = "Please enter a name") @PokeCheck(message = "Pokemon name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @PokeCheck(message = "ポケモンの名前が間違っています")
     private String p4;
-    @NotBlank(message = "Please enter a name") @ItemCheck(message = "Item name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @ItemCheck(message = "アイテムの名前が間違っています")
     private String i4;
-    @NotBlank(message = "Please enter a name") @AbilityCheck(message = "Ability name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @AbilityCheck(message = "特性の名前が間違っています")
     private String a4;
-    @NotBlank(message = "Please enter a name") @NatureCheck(message = "Nature name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @NatureCheck(message = "性格の名前が間違っています")
     private String n4;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m4_1;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m4_2;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m4_3;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m4_4;
-    @NotBlank(message = "Please enter a name") @PokeCheck(message = "Pokemon name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @PokeCheck(message = "ポケモンの名前が間違っています")
     private String p5;
-    @NotBlank(message = "Please enter a name") @ItemCheck(message = "Item name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @ItemCheck(message = "アイテムの名前が間違っています")
     private String i5;
-    @NotBlank(message = "Please enter a name") @AbilityCheck(message = "Ability name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @AbilityCheck(message = "特性の名前が間違っています")
     private String a5;
-    @NotBlank(message = "Please enter a name") @NatureCheck(message = "Nature name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @NatureCheck(message = "性格の名前が間違っています")
     private String n5;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m5_1;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m5_2;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m5_3;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m5_4;
-    @NotBlank(message = "Please enter a name") @PokeCheck(message = "Pokemon name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @PokeCheck(message = "ポケモンの名前が間違っています")
     private String p6;
-    @NotBlank(message = "Please enter a name") @ItemCheck(message = "Item name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @ItemCheck(message = "アイテムの名前が間違っています")
     private String i6;
-    @NotBlank(message = "Please enter a name") @AbilityCheck(message = "Ability name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @AbilityCheck(message = "特性の名前が間違っています")
     private String a6;
-    @NotBlank(message = "Please enter a name") @NatureCheck(message = "Nature name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @NatureCheck(message = "性格の名前が間違っています")
     private String n6;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m6_1;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m6_2;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m6_3;
-    @NotBlank(message = "Please enter a name") @MoveCheck(message = "Move name is not in the list")
+    @NotBlank(message = "入力していない欄があります") @MoveCheck(message = "わざ名が間違っています")
     private String m6_4;
-    @NotBlank(message = "Please enter a name") @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = "Date format is not valid")
+    @NotBlank(message = "入力していない欄があります") @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = "Date format is not valid")
     private String d;
 
     private Pokemon returnPokemon(String poid, long paid, String p, String i, String a, String n, String m1, String m2, String m3, String m4, LocalDate d) {

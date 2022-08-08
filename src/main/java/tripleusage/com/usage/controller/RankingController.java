@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,20 +26,46 @@ public class RankingController {
     private RankingService rankingService;
 
     @GetMapping("/ranking")
-    public String getPokemonRanking(Model model) {
-        model.addAttribute("pokeranking", rankingService.PokemonRanking());
-        model.addAttribute("itemranking", rankingService.ItemRanking(rankingService.PokemonRanking().get(0).getName()));
-        model.addAttribute("moveranking", rankingService.MoveRanking(rankingService.PokemonRanking().get(0).getName()));
-        model.addAttribute("natureranking", rankingService.NatureRanking(rankingService.PokemonRanking().get(0).getName()));
+    public String getPokemonRanking(Model model, HttpServletRequest request) {
+        String before = "2000-01-01";
+        String after = "3000-12-31";
+        String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
+        HttpSession session = request.getSession();
+        session.setAttribute("before", before);
+        session.setAttribute("after", after);
+        model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
+        model.addAttribute("itemranking", rankingService.ItemRanking(firstpokemom, before, after));
+        model.addAttribute("moveranking", rankingService.MoveRanking(firstpokemom, before, after));
+        model.addAttribute("natureranking", rankingService.NatureRanking(firstpokemom, before, after));
         return "ranking";
     }
 
-    @PostMapping("/ranking")
-    public String postPokemonRanking(@RequestParam String name, Model model) {
-        model.addAttribute("pokeranking", rankingService.PokemonRanking());
-        model.addAttribute("itemranking", rankingService.ItemRanking(name));
-        model.addAttribute("moveranking", rankingService.MoveRanking(name));
-        model.addAttribute("natureranking", rankingService.NatureRanking(name));
+    @PostMapping(params = "date" , value = "/ranking")
+    public String postDatePokemonRanking(@RequestParam String before, @RequestParam String after, Model model, HttpServletRequest request) {
+        if (rankingService.checkDate(before, after) == false) {
+            before = "2000-01-01";
+            after = "3000-12-31";
+        }
+        String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
+        HttpSession session = request.getSession();
+        session.setAttribute("before", before);
+        session.setAttribute("after", after);
+        model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
+        model.addAttribute("itemranking", rankingService.ItemRanking(firstpokemom, before, after));
+        model.addAttribute("moveranking", rankingService.MoveRanking(firstpokemom, before, after));
+        model.addAttribute("natureranking", rankingService.NatureRanking(firstpokemom, before, after));
+        return "ranking";
+    }
+
+    @PostMapping(params = "name" , value = "/ranking")
+    public String postPokemonRanking(@RequestParam String name, Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String before = (String) session.getAttribute("before");
+        String after = (String) session.getAttribute("after");
+        model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
+        model.addAttribute("itemranking", rankingService.ItemRanking(name, before, after));
+        model.addAttribute("moveranking", rankingService.MoveRanking(name, before, after));
+        model.addAttribute("natureranking", rankingService.NatureRanking(name, before, after));
         return "ranking";
     }
 }
