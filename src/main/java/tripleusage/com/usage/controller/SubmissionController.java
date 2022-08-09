@@ -45,16 +45,28 @@ public class SubmissionController {
         HttpSession session = request.getSession();
         @SuppressWarnings("unchecked")
         List<Pokemon> pokemons = (List<Pokemon>) session.getAttribute("pokesubmission");
+        if (pokemons == null) {
+            return "redirect:/form";
+        }
         model.addAttribute("pokemons", pokemons);
         return "confirm";
     }
 
-    @PostMapping("/confirm")
+    @PostMapping(params = "ok", value = "/confirm")
     public String postConfirm(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         @SuppressWarnings("unchecked")
         List<Pokemon> pokemons = (List<Pokemon>) session.getAttribute("pokesubmission");
         submissionService.submitPokemon(pokemons);
+        session.removeAttribute("pokesubmission");
+        return "redirect:/form";
+    }
+
+    @PostMapping(params = "cancel", value = "/confirm")
+    public String postCancel(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        logger.info("submit pokemon");
+        session.removeAttribute("pokesubmission");
         return "redirect:/form";
     }
 

@@ -19,14 +19,13 @@
         </tr>
     </table>
     よろしいですか？
-    <input type="submit" value="OK" id="okbtn">
+    <input type="submit" name="ok" value="OK" id="okbtn">
+    <input type="submit" name="cancel" value="キャンセル" id="cancelbtn">
     </form>
-    <input type="submit" value="キャンセル" id="cancelbtn">
 
     <script>
         function butotnCancel(){
             alert('キャンセルしました');
-            window.location.href = 'form';
         }
         function buttonOK(){
             alert('投稿完了しました');

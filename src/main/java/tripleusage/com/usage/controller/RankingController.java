@@ -43,7 +43,7 @@ public class RankingController {
         return "ranking";
     }
 
-    @PostMapping(params = "date" , value = "/ranking")
+    @PostMapping(params = "date", value = "/ranking")
     public String postDatePokemonRanking(@RequestParam String before, @RequestParam String after, Model model, HttpServletRequest request) {
         if (rankingService.checkDate(before, after) == false) {
             before = "2014-11-21";
