@@ -40,6 +40,9 @@ public class RankingController {
         model.addAttribute("itemranking", rankingService.ItemRanking(firstpokemom, before, after));
         model.addAttribute("moveranking", rankingService.MoveRanking(firstpokemom, before, after));
         model.addAttribute("natureranking", rankingService.NatureRanking(firstpokemom, before, after));
+        model.addAttribute("abilityranking", rankingService.AbilityRanking(firstpokemom, before, after));
+        model.addAttribute("samepartyranking", rankingService.SamePartyRanking(firstpokemom, before, after));
+        model.addAttribute("pokemonusage", rankingService.PokemonUsage(firstpokemom, before, after));
         return "ranking";
     }
 
@@ -71,6 +74,9 @@ public class RankingController {
         model.addAttribute("itemranking", rankingService.ItemRanking(firstpokemom, before, after));
         model.addAttribute("moveranking", rankingService.MoveRanking(firstpokemom, before, after));
         model.addAttribute("natureranking", rankingService.NatureRanking(firstpokemom, before, after));
+        model.addAttribute("abilityranking", rankingService.AbilityRanking(firstpokemom, before, after));
+        model.addAttribute("samepartyranking", rankingService.SamePartyRanking(firstpokemom, before, after));
+        model.addAttribute("pokemonusage", rankingService.PokemonUsage(firstpokemom, before, after));
         return "ranking";
     }
 
@@ -85,6 +91,9 @@ public class RankingController {
         model.addAttribute("itemranking", rankingService.ItemRanking(name, before, after));
         model.addAttribute("moveranking", rankingService.MoveRanking(name, before, after));
         model.addAttribute("natureranking", rankingService.NatureRanking(name, before, after));
+        model.addAttribute("abilityranking", rankingService.AbilityRanking(name, before, after));
+        model.addAttribute("samepartyranking", rankingService.SamePartyRanking(name, before, after));
+        model.addAttribute("pokemonusage", rankingService.PokemonUsage(name, before, after));
         return "ranking";
     }
 }

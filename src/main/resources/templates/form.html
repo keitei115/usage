@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>form</title>
 </head>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/4.5.3/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
 <body>
     <form method="post" th:object="${pokeForm}">
         ポ1:<input type="text" name="p1" th:value="*{p1}" th:errorclass="error"><br>

@@ -28,7 +28,7 @@ public class SubmissionController {
     @Autowired
     private SubmissionService submissionService;
 
-    private static final Logger logger = LoggerFactory.getLogger(SubmissionController.class);
+    //private static final Logger logger = LoggerFactory.getLogger(SubmissionController.class);
 
     @ModelAttribute
     PokeForm pokeForm() {
@@ -65,7 +65,6 @@ public class SubmissionController {
     @PostMapping(params = "cancel", value = "/confirm")
     public String postCancel(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        logger.info("submit pokemon");
         session.removeAttribute("pokesubmission");
         return "redirect:/form";
     }
@@ -74,9 +73,8 @@ public class SubmissionController {
     public String addPokemon(@Validated @ModelAttribute("pokeForm") PokeForm pokeform, BindingResult result, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (result.hasErrors()) {
-            List<String> errors = result.getFieldErrors().stream().map(x -> x.getDefaultMessage()).distinct().collect(Collectors.toList());
-            List<String> errorfields = result.getFieldErrors().stream().map(x -> x.getField()).distinct().collect(Collectors.toList());
-            logger.info("Errors: " + errorfields.toString());
+            //List<String> errors = result.getFieldErrors().stream().map(x -> x.getDefaultMessage()).distinct().collect(Collectors.toList());
+            //List<String> errorfields = result.getFieldErrors().stream().map(x -> x.getField()).distinct().collect(Collectors.toList());
             return "form";
         }
         List<Pokemon> pokemons = submissionService.getPokemonList(pokeform);

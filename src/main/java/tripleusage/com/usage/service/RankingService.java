@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tripleusage.com.usage.repository.PokeRepository;
+import tripleusage.com.usage.domain.AbilityTotal;
 import tripleusage.com.usage.domain.ItemTotal;
 import tripleusage.com.usage.domain.MoveTotal;
 import tripleusage.com.usage.domain.NatureTotal;
@@ -37,6 +38,18 @@ public class RankingService {
 
     public List<NatureTotal> NatureRanking(String pokemom, String before, String after) {
         return repository.getNatureTotal(pokemom, before, after);
+        }
+
+    public List<AbilityTotal> AbilityRanking(String pokemom, String before, String after) {
+        return repository.getAbilityTotal(pokemom, before, after);
+    }
+
+    public List<PokemonTotal> SamePartyRanking(String pokemom, String before, String after) {
+        return repository.getPokemonTotalBySameParty(pokemom, before, after);
+        }
+
+    public float PokemonUsage(String pokemom, String before, String after) {
+        return repository.getPokemonUsage(pokemom, before, after);
         }
 
     public Boolean checkDate(String before, String after) {
