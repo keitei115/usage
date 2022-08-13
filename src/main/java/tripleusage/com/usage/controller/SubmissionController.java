@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import tripleusage.com.usage.domain.PokeForm;
 import tripleusage.com.usage.domain.Pokemon;
+import tripleusage.com.usage.service.NameList;
 import tripleusage.com.usage.service.SubmissionService;
 
 import org.slf4j.Logger;
@@ -28,7 +29,8 @@ public class SubmissionController {
     @Autowired
     private SubmissionService submissionService;
 
-    //private static final Logger logger = LoggerFactory.getLogger(SubmissionController.class);
+    private static final NameList nameList = new NameList();
+    private static final Logger logger = LoggerFactory.getLogger(SubmissionController.class);
 
     @ModelAttribute
     PokeForm pokeForm() {
@@ -37,6 +39,12 @@ public class SubmissionController {
 
     @GetMapping("/form")
     public String getSearch(Model model) {
+        model.addAttribute("pokemonlist", nameList.getPokemonList());
+        model.addAttribute("itemlist", nameList.getItemList());
+        model.addAttribute("abilitylist", nameList.getAbilityList());
+        model.addAttribute("moveslist", nameList.getMoveList());
+        model.addAttribute("naturelist", nameList.getPersonalList());
+        logger.info(model.toString());
         return "form";
     }
 

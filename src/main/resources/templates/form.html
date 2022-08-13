@@ -7,64 +7,80 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/4.5.3/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
 <body>
     <form method="post" th:object="${pokeForm}">
-        ポ1:<input type="text" name="p1" th:value="*{p1}" th:errorclass="error"><br>
-        ア1:<input type="text" name="i1" th:value="*{i1}" th:errorclass="error"><br>
-        特1:<input type="text" name="a1" th:value="*{a1}" th:errorclass="error"><br>
-        性1:<input type="text" name="n1" th:value="*{n1}" th:errorclass="error"><br>
-        技1-1:<input type="text" name="m1_1" th:value="*{m1_1}" th:errorclass="error"><br>
-        技1-2:<input type="text" name="m1_2" th:value="*{m1_2}" th:errorclass="error"><br>
-        技1-3:<input type="text" name="m1_3" th:value="*{m1_3}" th:errorclass="error"><br>
-        技1-4:<input type="text" name="m1_4" th:value="*{m1_4}" th:errorclass="error"><br>
-
-        ポ2:<input type="text" name="p2" th:value="*{p2}" th:errorclass="error"><br>
-        ア2:<input type="text" name="i2" th:value="*{i2}" th:errorclass="error"><br>
-        特2:<input type="text" name="a2" th:value="*{a2}" th:errorclass="error"><br>
-        性2:<input type="text" name="n2" th:value="*{n2}" th:errorclass="error"><br>
-        技2-1:<input type="text" name="m2_1" th:value="*{m2_1}" th:errorclass="error"><br>
-        技2-2:<input type="text" name="m2_2" th:value="*{m2_2}" th:errorclass="error"><br>
-        技2-3:<input type="text" name="m2_3" th:value="*{m2_3}" th:errorclass="error"><br>
-        技2-4:<input type="text" name="m2_4" th:value="*{m2_4}" th:errorclass="error"><br>
-
-        ポ3:<input type="text" name="p3" th:value="*{p3}" th:errorclass="error"><br>
-        ア3:<input type="text" name="i3" th:value="*{i3}" th:errorclass="error"><br>
-        特3:<input type="text" name="a3" th:value="*{a3}" th:errorclass="error"><br>
-        性3:<input type="text" name="n3" th:value="*{n3}" th:errorclass="error"><br>
-        技3-1:<input type="text" name="m3_1" th:value="*{m3_1}" th:errorclass="error"><br>
-        技3-2:<input type="text" name="m3_2" th:value="*{m3_2}" th:errorclass="error"><br>
-        技3-3:<input type="text" name="m3_3" th:value="*{m3_3}" th:errorclass="error"><br>
-        技3-4:<input type="text" name="m3_4" th:value="*{m3_4}" th:errorclass="error"><br>
-
-        ポ4:<input type="text" name="p4" th:value="*{p4}" th:errorclass="error"><br>
-        ア4:<input type="text" name="i4" th:value="*{i4}" th:errorclass="error"><br>
-        特4:<input type="text" name="a4" th:value="*{a4}" th:errorclass="error"><br>
-        性4:<input type="text" name="n4" th:value="*{n4}" th:errorclass="error"><br>
-        技4-1:<input type="text" name="m4_1" th:value="*{m4_1}" th:errorclass="error"><br>
-        技4-2:<input type="text" name="m4_2" th:value="*{m4_2}" th:errorclass="error"><br>
-        技4-3:<input type="text" name="m4_3" th:value="*{m4_3}" th:errorclass="error"><br>
-        技4-4:<input type="text" name="m4_4" th:value="*{m4_4}" th:errorclass="error"><br>
-
-        ポ5:<input type="text" name="p5" th:value="*{p5}" th:errorclass="error"><br>
-        ア5:<input type="text" name="i5" th:value="*{i5}" th:errorclass="error"><br>
-        特5:<input type="text" name="a5" th:value="*{a5}" th:errorclass="error"><br>
-        性5:<input type="text" name="n5" th:value="*{n5}" th:errorclass="error"><br>
-        技5-1:<input type="text" name="m5_1" th:value="*{m5_1}" th:errorclass="error"><br>
-        技5-2:<input type="text" name="m5_2" th:value="*{m5_2}" th:errorclass="error"><br>
-        技5-3:<input type="text" name="m5_3" th:value="*{m5_3}" th:errorclass="error"><br>
-        技5-4:<input type="text" name="m5_4" th:value="*{m5_4}" th:errorclass="error"><br>
-
-        ポ6:<input type="text" name="p6" th:value="*{p6}" th:errorclass="error"><br>
-        ア6:<input type="text" name="i6" th:value="*{i6}" th:errorclass="error"><br>
-        特6:<input type="text" name="a6" th:value="*{a6}" th:errorclass="error"><br>
-        性6:<input type="text" name="n6" th:value="*{n6}" th:errorclass="error"><br>
-        技6-1:<input type="text" name="m6_1" th:value="*{m6_1}" th:errorclass="error"><br>
-        技6-2:<input type="text" name="m6_2" th:value="*{m6_2}" th:errorclass="error"><br>
-        技6-3:<input type="text" name="m6_3" th:value="*{m6_3}" th:errorclass="error"><br>
-        技6-4:<input type="text" name="m6_4" th:value="*{m6_4}" th:errorclass="error"><br>
+        <input type="text" name="p1" list="plist" placeholder="ポケモン" th:value="*{p1}" th:errorclass="error">
+        @<input type="text" name="i1" list="ilist" placeholder="アイテム" th:value="*{i1}" th:errorclass="error"><br>
+        <input type="text" name="a1" list="alist" placeholder="特性" th:value="*{a1}" th:errorclass="error">
+        <input type="text" name="n1" list="nlist" placeholder="性格" th:value="*{n1}" th:errorclass="error"><br>
+        <input type="text" name="m1_1" list="mlist" placeholder="わざ１" th:value="*{m1_1}" th:errorclass="error">
+        <input type="text" name="m1_2" list="mlist" placeholder="わざ２" th:value="*{m1_2}" th:errorclass="error"><br>
+        <input type="text" name="m1_3" list="mlist" placeholder="わざ３" th:value="*{m1_3}" th:errorclass="error">
+        <input type="text" name="m1_4" list="mlist" placeholder="わざ４" th:value="*{m1_4}" th:errorclass="error"><br>
+<br>
+        <input type="text" name="p2" list="plist" placeholder="ポケモン" th:value="*{p2}" th:errorclass="error">
+        @<input type="text" name="i2" list="ilist" placeholder="アイテム" th:value="*{i2}" th:errorclass="error"><br>
+        <input type="text" name="a2" list="alist" placeholder="特性" th:value="*{a2}" th:errorclass="error">
+        <input type="text" name="n2" list="nlist" placeholder="性格" th:value="*{n2}" th:errorclass="error"><br>
+        <input type="text" name="m2_1" list="mlist" placeholder="わざ１" th:value="*{m2_1}" th:errorclass="error">
+        <input type="text" name="m2_2" list="mlist" placeholder="わざ２" th:value="*{m2_2}" th:errorclass="error"><br>
+        <input type="text" name="m2_3" list="mlist" placeholder="わざ３" th:value="*{m2_3}" th:errorclass="error">
+        <input type="text" name="m2_4" list="mlist" placeholder="わざ４" th:value="*{m2_4}" th:errorclass="error"><br>
+<br>
+        <input type="text" name="p3" list="plist" placeholder="ポケモン" th:value="*{p3}" th:errorclass="error">
+        @<input type="text" name="i3" list="ilist" placeholder="アイテム" th:value="*{i3}" th:errorclass="error"><br>
+        <input type="text" name="a3" list="alist" placeholder="特性" th:value="*{a3}" th:errorclass="error">
+        <input type="text" name="n3" list="nlist" placeholder="性格" th:value="*{n3}" th:errorclass="error"><br>
+        <input type="text" name="m3_1" list="mlist" placeholder="わざ１" th:value="*{m3_1}" th:errorclass="error">
+        <input type="text" name="m3_2" list="mlist" placeholder="わざ２" th:value="*{m3_2}" th:errorclass="error"><br>
+        <input type="text" name="m3_3" list="mlist" placeholder="わざ３" th:value="*{m3_3}" th:errorclass="error">
+        <input type="text" name="m3_4" list="mlist" placeholder="わざ４" th:value="*{m3_4}" th:errorclass="error"><br>
+<br>
+        <input type="text" name="p4" list="plist" placeholder="ポケモン" th:value="*{p4}" th:errorclass="error">
+        @<input type="text" name="i4" list="ilist" placeholder="アイテム" th:value="*{i4}" th:errorclass="error"><br>
+        <input type="text" name="a4" list="alist" placeholder="特性" th:value="*{a4}" th:errorclass="error">
+        <input type="text" name="n4" list="nlist" placeholder="性格" th:value="*{n4}" th:errorclass="error"><br>
+        <input type="text" name="m4_1" list="mlist" placeholder="わざ１" th:value="*{m4_1}" th:errorclass="error">
+        <input type="text" name="m4_2" list="mlist" placeholder="わざ２" th:value="*{m4_2}" th:errorclass="error"><br>
+        <input type="text" name="m4_3" list="mlist" placeholder="わざ３" th:value="*{m4_3}" th:errorclass="error">
+        <input type="text" name="m4_4" list="mlist" placeholder="わざ４" th:value="*{m4_4}" th:errorclass="error"><br>
+<br>
+        <input type="text" name="p5" list="plist" placeholder="ポケモン" th:value="*{p5}" th:errorclass="error">
+        @<input type="text" name="i5" list="ilist" placeholder="アイテム" th:value="*{i5}" th:errorclass="error"><br>
+        <input type="text" name="a5" list="alist" placeholder="特性" th:value="*{a5}" th:errorclass="error">
+        <input type="text" name="n5" list="nlist" placeholder="性格" th:value="*{n5}" th:errorclass="error"><br>
+        <input type="text" name="m5_1" list="mlist" placeholder="わざ１" th:value="*{m5_1}" th:errorclass="error">
+        <input type="text" name="m5_2" list="mlist" placeholder="わざ２" th:value="*{m5_2}" th:errorclass="error"><br>
+        <input type="text" name="m5_3" list="mlist" placeholder="わざ３" th:value="*{m5_3}" th:errorclass="error">
+        <input type="text" name="m5_4" list="mlist" placeholder="わざ４" th:value="*{m5_4}" th:errorclass="error"><br>
+<br>
+        <input type="text" name="p6" list="plist" placeholder="ポケモン" th:value="*{p6}" th:errorclass="error">
+        @<input type="text" name="i6" list="ilist" placeholder="アイテム" th:value="*{i6}" th:errorclass="error"><br>
+        <input type="text" name="a6" list="alist" placeholder="特性" th:value="*{a6}" th:errorclass="error">
+        <input type="text" name="n6" list="nlist" placeholder="性格" th:value="*{n6}" th:errorclass="error"><br>
+        <input type="text" name="m6_1" list="mlist" placeholder="わざ１" th:value="*{m6_1}" th:errorclass="error">
+        <input type="text" name="m6_2" list="mlist" placeholder="わざ２" th:value="*{m6_2}" th:errorclass="error"><br>
+        <input type="text" name="m6_3" list="mlist" placeholder="わざ３" th:value="*{m6_3}" th:errorclass="error">
+        <input type="text" name="m6_4" list="mlist" placeholder="わざ４" th:value="*{m6_4}" th:errorclass="error"><br>
 
         日:<input type="date" name="d" id="d" th:value="*{d}" th:errorclass="error"><br>
 
         <input type="submit" value="クリック">
         </form>
+
+        <datalist id="plist">
+            <option th:each="p : ${pokemonlist}" th:value="${p}" th:label="${p}"></option>
+        </datalist>
+        <datalist id="ilist">
+            <option th:each="i : ${itemlist}" th:value="${i}" th:label="${i}"></option>
+        </datalist>
+        <datalist id="alist">
+            <option th:each="a : ${abilitylist}" th:value="${a}" th:label="${a}"></option>
+        </datalist>
+        <datalist id="nlist">
+            <option th:each="n : ${naturelist}" th:value="${n}" th:label="${n}"></option>
+        </datalist>
+        <datalist id="mlist">
+            <option th:each="m : ${moveslist}" th:value="${m}" th:label="${m}"></option>
+        </datalist>
 
 <style>
     input.error {
