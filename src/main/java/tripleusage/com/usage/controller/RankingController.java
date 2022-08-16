@@ -29,13 +29,13 @@ public class RankingController {
     public String getPokemonRanking(Model model, HttpServletRequest request) {
         String before = "2014-11-21";
         String after = LocalDate.now().toString();
-        logger.info("before: " + before + ", after: " + after);
         String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
         HttpSession session = request.getSession();
         session.setAttribute("before", before);
         session.setAttribute("after", after);
         model.addAttribute("before", before);
         model.addAttribute("after", after);
+        model.addAttribute("pokemonname", firstpokemom);
         model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
         model.addAttribute("itemranking", rankingService.ItemRanking(firstpokemom, before, after));
         model.addAttribute("moveranking", rankingService.MoveRanking(firstpokemom, before, after));
@@ -70,6 +70,7 @@ public class RankingController {
         session.setAttribute("after", after);
         model.addAttribute("before", before);
         model.addAttribute("after", after);
+        model.addAttribute("pokemonname", firstpokemom);
         model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
         model.addAttribute("itemranking", rankingService.ItemRanking(firstpokemom, before, after));
         model.addAttribute("moveranking", rankingService.MoveRanking(firstpokemom, before, after));
@@ -83,17 +84,36 @@ public class RankingController {
     @PostMapping(params = "name" , value = "/ranking")
     public String postPokemonRanking(@RequestParam String name, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        String before = session.getAttribute("before").toString();
-        String after = session.getAttribute("after").toString();
-        model.addAttribute("before", before);
-        model.addAttribute("after", after);
-        model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
-        model.addAttribute("itemranking", rankingService.ItemRanking(name, before, after));
-        model.addAttribute("moveranking", rankingService.MoveRanking(name, before, after));
-        model.addAttribute("natureranking", rankingService.NatureRanking(name, before, after));
-        model.addAttribute("abilityranking", rankingService.AbilityRanking(name, before, after));
-        model.addAttribute("samepartyranking", rankingService.SamePartyRanking(name, before, after));
-        model.addAttribute("pokemonusage", rankingService.PokemonUsage(name, before, after));
+        try{
+            String before = session.getAttribute("before").toString();
+            String after = session.getAttribute("after").toString();
+            model.addAttribute("before", before);
+            model.addAttribute("after", after);
+            model.addAttribute("pokemonname", name);
+            model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
+            model.addAttribute("itemranking", rankingService.ItemRanking(name, before, after));
+            model.addAttribute("moveranking", rankingService.MoveRanking(name, before, after));
+            model.addAttribute("natureranking", rankingService.NatureRanking(name, before, after));
+            model.addAttribute("abilityranking", rankingService.AbilityRanking(name, before, after));
+            model.addAttribute("samepartyranking", rankingService.SamePartyRanking(name, before, after));
+            model.addAttribute("pokemonusage", rankingService.PokemonUsage(name, before, after));
+        } catch (Exception e) {
+            String before = "2014-11-21";
+            String after = LocalDate.now().toString();
+            String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
+            session.setAttribute("before", before);
+            session.setAttribute("after", after);
+            model.addAttribute("before", before);
+            model.addAttribute("after", after);
+            model.addAttribute("pokemonname", firstpokemom);
+            model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
+            model.addAttribute("itemranking", rankingService.ItemRanking(firstpokemom, before, after));
+            model.addAttribute("moveranking", rankingService.MoveRanking(firstpokemom, before, after));
+            model.addAttribute("natureranking", rankingService.NatureRanking(firstpokemom, before, after));
+            model.addAttribute("abilityranking", rankingService.AbilityRanking(firstpokemom, before, after));
+            model.addAttribute("samepartyranking", rankingService.SamePartyRanking(firstpokemom, before, after));
+            model.addAttribute("pokemonusage", rankingService.PokemonUsage(firstpokemom, before, after));
+        }
         return "ranking";
     }
 }

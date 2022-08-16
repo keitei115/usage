@@ -2,63 +2,165 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>result</title>
+    <title>トリプルフリーデータベース</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+    <script src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js}"></script>
+    <meta name="viewport" content="width=device-width">
 </head>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/4.5.3/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
 <body>
-    <form method="post">
-        <table>
-            <input type="date" name="before" value="2014-11-21"> ~ <input type="date" name="after" id="d" th:value="${after}">
-            <input type="submit" value="クリック" name = "date">
-            <tr th:each="pokemon , stat : ${pokeranking}">
-                <td th:text="${stat.count}"></td>
-                <td><input type="submit" name="name" th:value ="${pokemon.name}"></td>
-            </tr>
-        </table>
-    </form>
-
-    <p th:text="${before}"></p> ~ <p th:text="${after}"></p>
-    <p th:text="${error}"></p>
-    <table>
-        <td th:text="${#numbers.formatDecimal(pokemonusage, 1, 1)}"></td>
-        <tr th:each="item , stat : ${itemranking}">
-            <td th:text="${stat.count}"></td>
-            <td th:text="${item.item}"></td>
-            <td th:text="${#numbers.formatDecimal(item.itemtotal, 1, 1)}"></td>
-        </tr>
-    <br>
-        <tr th:each="move , stat : ${moveranking}">
-            <td th:text="${stat.count}"></td>
-            <td th:text="${move.move}"></td>
-            <td th:text="${#numbers.formatDecimal(move.movetotal, 1, 1)}"></td>
-        </tr>
-    <br>
-        <tr th:each="nature , stat : ${natureranking}">
-            <td th:text="${stat.count}"></td>
-            <td th:text="${nature.nature}"></td>
-            <td th:text="${#numbers.formatDecimal(nature.naturetotal, 1, 1)}"></td>
-        </tr>
-    <br>
-        <tr th:each="ability , stat : ${abilityranking}">
-            <td th:text="${stat.count}"></td>
-            <td th:text="${ability.ability}"></td>
-            <td th:text="${#numbers.formatDecimal(ability.abilitytotal, 1, 1)}"></td>
-        </tr>
-    <br>
-        <tr th:each="samepokemon , stat : ${samepartyranking}">
-            <td th:text="${stat.count}"></td>
-            <td th:text="${samepokemon.name}"></td>
-            <td th:text="${#numbers.formatDecimal(samepokemon.pokemontotal, 1, 1)}"></td>
-        </tr>
-    </table>
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center mw-100">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/overview">トリプルフリーデータベース</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ranking">使用率ランキング</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/form">パーティ投稿フォーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/overview">このサイトについて</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid text-nowrap">
+        <div class="row">
+            <div class="col-12">
+                <form method="post">
+                    <table>
+                        <input type="date" name="before" value="2014-11-21"> ~ <input type="date" name="after" id="d" th:value="${after}">
+                        <input type="submit" value="日付で絞る" name = "date">
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p th:text="${before} + '~' + ${after} + 'の間の使用率'"></p>
+            </div>
+        </div>
+        <div class="row flex-nowrap justify-content-start">
+            <div class="col-xl-2 col-xs-6 col-ms-6 max-width-40 mh-100vh overflow-auto">
+                <form method="post">
+                    <table class="table table-hover">
+                        <tr th:each="pokemon , stat : ${pokeranking}">
+                            <td><button type="submit" name="name" th:value="${pokemon.name}"  class="btn btn-link width-100 left font-size-095" th:text="${stat.count} + ' : ' + ${pokemon.name}"></button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="col-xl-10 col-xs-6 col-ms-6 font-size-09 mh-100vh max-width-60 overflow-auto">
+                <div class="row flex-sm-wrap flex-md-wrap justify-content-start px-0">
+                    <div class="col-12 rounded bg-primary bg-opacity-10 m-1 mw-100">
+                        <p th:text="${pokemonname} + '使用率 : ' + ${#numbers.formatDecimal(pokemonusage, 1, 1)} + '%' "></p>
+                    </div>
+                    <div class="col-xl-2 col-xs-4 col-ms-4 rounded bg-primary bg-opacity-10 m-1 max-width-60 px-0">
+                        <table>
+                            <td>とくせい</td>
+                            <tr th:each="ability , stat : ${abilityranking}">
+                                <td th:text="${stat.count} + ':' + ${ability.ability} + ' ' + ${#numbers.formatDecimal(ability.abilitytotal, 1, 1)} + '%' "></td>
+                            </tr>
+                        <p th:text="${error}"></p>
+                        </table>
+                    </div>
+                    <div class="col-xl-2 col-ms-4 col-xs-4 rounded bg-primary bg-opacity-10 m-1 max-width-60 px-0">
+                        <table>
+                            <td>わざ</td>
+                            <tr th:each="move , stat : ${moveranking}">
+                                <td th:text="${stat.count} + ':' + ${move.move} + ' ' + ${#numbers.formatDecimal(move.movetotal, 1, 1)} + '%' "></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xl-2 col-ms-4 col-xs-4 rounded bg-primary bg-opacity-10 m-1 max-width-60 px-0">
+                        <table>
+                            <td>せいかく</td>
+                            <tr th:each="nature , stat : ${natureranking}">
+                                <td th:text="${stat.count} + ':' + ${nature.nature} + ' ' + ${#numbers.formatDecimal(nature.naturetotal, 1, 1)} + '%' "></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xl-2 col-ms-4 col-xs-4 rounded bg-primary bg-opacity-10 m-1 max-width-60 px-0">
+                        <table>
+                            <td>もちもの</td>
+                            <tr th:each="item , stat : ${itemranking}">
+                                <td th:text="${stat.count} + ':' + ${item.item} + ' ' + ${#numbers.formatDecimal(item.itemtotal, 1, 1)} + '%' "></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xl-2 col-ms-4 col-xs-4 rounded bg-primary bg-opacity-10 m-1 max-width-60 px-0">
+                        <table>
+                            同じパーティに入ってるポケモン
+                            <tr th:each="samepokemon , stat : ${samepartyranking}">
+                                <td th:text="${stat.count} + ':' + ${samepokemon.name} + ' ' + ${#numbers.formatDecimal(samepokemon.pokemontotal, 1, 1)} + '%' "></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         window.onload = function() {
+            restore_scroll();
             var today = new Date();
             today.setDate(today.getDate());
             var y = today.getFullYear();
             var m = ("0" + (today.getMonth() + 1)).slice(-2);
             var d = ("0" + today.getDate()).slice(-2);
             document.getElementById("d").value = y + "-" + m + "-" + d;
+            keep_scroll()
         }
     </script>
+    <style>
+        .btn-link {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+        }
+        .right {
+            text-align: right;
+        }
+        .left {
+            text-align: left;
+        }
+        .max-width-40 {
+            max-width: 40%;
+        }
+        .max-width-60 {
+            max-width: 60%;
+        }
+        .max-width-80 {
+            max-width: 80%;
+        }
+        .font-size-09 {
+            font-size: 0.9rem;
+        }
+        .font-size-095 {
+            font-size: 0.95rem;
+        }
+        .mh-100vh {
+            max-height: 100vh;
+        }
+        .max-width-40vh {
+            max-width: 40vh;
+        }
+        .max-width-60vh {
+            max-width: 60vh;
+        }
+        .max-width-80vh {
+            max-width: 80vh;
+        }
+        .max-width-100vh {
+            max-width: 100vh;
+        }
+        .width-100 {
+            width: 100%;
+        }
+    </style>
+</body>
