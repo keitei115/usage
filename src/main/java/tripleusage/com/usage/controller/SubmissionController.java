@@ -1,7 +1,6 @@
 package tripleusage.com.usage.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,7 +29,7 @@ public class SubmissionController {
     private SubmissionService submissionService;
 
     private static final NameList nameList = new NameList();
-    private static final Logger logger = LoggerFactory.getLogger(SubmissionController.class);
+    //private static final Logger logger = LoggerFactory.getLogger(SubmissionController.class);
 
     @ModelAttribute
     PokeForm pokeForm() {
@@ -44,7 +43,6 @@ public class SubmissionController {
         model.addAttribute("abilitylist", nameList.getAbilityList());
         model.addAttribute("moveslist", nameList.getMoveList());
         model.addAttribute("naturelist", nameList.getPersonalList());
-        logger.info(model.toString());
         return "form";
     }
 
@@ -81,8 +79,11 @@ public class SubmissionController {
     public String addPokemon(@Validated @ModelAttribute("pokeForm") PokeForm pokeform, BindingResult result, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (result.hasErrors()) {
-            //List<String> errors = result.getFieldErrors().stream().map(x -> x.getDefaultMessage()).distinct().collect(Collectors.toList());
-            //List<String> errorfields = result.getFieldErrors().stream().map(x -> x.getField()).distinct().collect(Collectors.toList());
+            model.addAttribute("pokemonlist", nameList.getPokemonList());
+            model.addAttribute("itemlist", nameList.getItemList());
+            model.addAttribute("abilitylist", nameList.getAbilityList());
+            model.addAttribute("moveslist", nameList.getMoveList());
+            model.addAttribute("naturelist", nameList.getPersonalList());
             return "form";
         }
         List<Pokemon> pokemons = submissionService.getPokemonList(pokeform);

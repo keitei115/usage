@@ -20,7 +20,7 @@ import tripleusage.com.usage.service.RankingService;
 @Controller
 public class RankingController {
 
-    private static final Logger logger = LoggerFactory.getLogger(RankingController.class);
+    //private static final Logger logger = LoggerFactory.getLogger(RankingController.class);
 
     @Autowired
     private RankingService rankingService;
