@@ -33,8 +33,9 @@ public class RankingController {
         HttpSession session = request.getSession();
         session.setAttribute("before", before);
         session.setAttribute("after", after);
-        model.addAttribute("before", before);
-        model.addAttribute("after", after);
+        model.addAttribute("before", before.replace("-", "/"));
+        model.addAttribute("after", after.replace("-", "/"));
+        model.addAttribute("afterval", after);
         model.addAttribute("pokemonname", firstpokemom);
         model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
         model.addAttribute("itemranking", rankingService.ItemRanking(firstpokemom, before, after));
@@ -58,18 +59,31 @@ public class RankingController {
         } catch (Exception e) {
             model.addAttribute("error", "検索範囲にポケモンがいませんでした。");
             HttpSession session = request.getSession();
+            before = "2014-11-21";
+            after = LocalDate.now().toString();
+            String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
             session.setAttribute("before", before);
             session.setAttribute("after", after);
-            model.addAttribute("before", before);
-            model.addAttribute("after", after);
+            model.addAttribute("before", before.replace("-", "/"));
+            model.addAttribute("after", after.replace("-", "/"));
+            model.addAttribute("afterval", after);
+            model.addAttribute("pokemonname", firstpokemom);
+            model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
+            model.addAttribute("itemranking", rankingService.ItemRanking(firstpokemom, before, after));
+            model.addAttribute("moveranking", rankingService.MoveRanking(firstpokemom, before, after));
+            model.addAttribute("natureranking", rankingService.NatureRanking(firstpokemom, before, after));
+            model.addAttribute("abilityranking", rankingService.AbilityRanking(firstpokemom, before, after));
+            model.addAttribute("samepartyranking", rankingService.SamePartyRanking(firstpokemom, before, after));
+            model.addAttribute("pokemonusage", rankingService.PokemonUsage(firstpokemom, before, after));
             return "ranking";
         }
         String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
         HttpSession session = request.getSession();
         session.setAttribute("before", before);
         session.setAttribute("after", after);
-        model.addAttribute("before", before);
-        model.addAttribute("after", after);
+        model.addAttribute("before", before.replace("-", "/"));
+        model.addAttribute("after", after.replace("-", "/"));
+        model.addAttribute("afterval", after);
         model.addAttribute("pokemonname", firstpokemom);
         model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
         model.addAttribute("itemranking", rankingService.ItemRanking(firstpokemom, before, after));
@@ -87,8 +101,9 @@ public class RankingController {
         try{
             String before = session.getAttribute("before").toString();
             String after = session.getAttribute("after").toString();
-            model.addAttribute("before", before);
-            model.addAttribute("after", after);
+            model.addAttribute("before", before.replace("-", "/"));
+            model.addAttribute("after", after.replace("-", "/"));
+            model.addAttribute("afterval", after);
             model.addAttribute("pokemonname", name);
             model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
             model.addAttribute("itemranking", rankingService.ItemRanking(name, before, after));
@@ -103,8 +118,9 @@ public class RankingController {
             String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
             session.setAttribute("before", before);
             session.setAttribute("after", after);
-            model.addAttribute("before", before);
-            model.addAttribute("after", after);
+            model.addAttribute("before", before.replace("-", "/"));
+            model.addAttribute("after", after.replace("-", "/"));
+            model.addAttribute("afterval", after);
             model.addAttribute("pokemonname", firstpokemom);
             model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
             model.addAttribute("itemranking", rankingService.ItemRanking(firstpokemom, before, after));
