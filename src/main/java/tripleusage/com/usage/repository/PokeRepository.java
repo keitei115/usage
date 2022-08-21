@@ -34,7 +34,7 @@ public interface PokeRepository extends JpaRepository<Pokemon, String> {
     @Query(value = "SELECT name,CAST(COUNT(name) AS REAL) / (SELECT COUNT(partyid) FROM POKEMON WHERE name = ?1 AND date BETWEEN ?2 AND ?3) * 100.0 AS pokemontotal FROM POKEMON WHERE date BETWEEN ?2 AND ?3 AND partyid IN (SELECT partyid FROM pokemon WHERE NAME = ?1) AND name != ?1 GROUP BY name ORDER BY pokemontotal DESC LIMIT 20;", nativeQuery = true)
     List<PokemonTotal> getPokemonTotalBySameParty(@Param("name") String name, String before, String after);
 
-    @Query(value = "SELECT CAST(COUNT(NAME) AS REAL) / (SELECT MAX(partyid) FROM POKEMON WHERE date BETWEEN ?2 AND ?3 ) * 100.0 AS pokemontotal FROM POKEMON WHERE DATE BETWEEN ?2 AND ?3  GROUP BY NAME HAVING name = ?1", nativeQuery = true)
+    @Query(value = "SELECT CAST(COUNT(NAME) AS REAL) / (SELECT COUNT(DISTINCT partyid) FROM POKEMON WHERE date BETWEEN ?2 AND ?3 ) * 100.0 AS pokemontotal FROM POKEMON WHERE DATE BETWEEN ?2 AND ?3  GROUP BY NAME HAVING name = ?1", nativeQuery = true)
     float getPokemonUsage(@Param("name") String name, String before, String after);
 
     @Query(value = "SELECT MAX(partyid) FROM POKEMON", nativeQuery = true)
