@@ -1,6 +1,7 @@
 package tripleusage.com.usage.service;
 
 import java.util.List;
+import java.sql.Date;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,31 +26,31 @@ public class RankingService {
     private PokeRepository repository;
 
     public List<PokemonTotal> PokemonRanking(String before, String after) {
-        return repository.getPokemonTotal(before, after);
+        return repository.getPokemonTotal(LocalDate.parse(before), LocalDate.parse(after));
         }
 
     public List<ItemTotal> ItemRanking(String pokemom, String before, String after) {
-        return repository.getItemTotal(pokemom, before, after);
+        return repository.getItemTotal(pokemom, LocalDate.parse(before), LocalDate.parse(after));
         }
 
     public List<MoveTotal> MoveRanking(String pokemom, String before, String after) {
-        return repository.getMoveTotal(pokemom, before, after);
+        return repository.getMoveTotal(pokemom, LocalDate.parse(before), LocalDate.parse(after));
         }
 
     public List<NatureTotal> NatureRanking(String pokemom, String before, String after) {
-        return repository.getNatureTotal(pokemom, before, after);
+        return repository.getNatureTotal(pokemom, LocalDate.parse(before), LocalDate.parse(after));
         }
 
     public List<AbilityTotal> AbilityRanking(String pokemom, String before, String after) {
-        return repository.getAbilityTotal(pokemom, before, after);
+        return repository.getAbilityTotal(pokemom, LocalDate.parse(before), LocalDate.parse(after));
     }
 
     public List<PokemonTotal> SamePartyRanking(String pokemom, String before, String after) {
-        return repository.getPokemonTotalBySameParty(pokemom, before, after);
+        return repository.getPokemonTotalBySameParty(pokemom, LocalDate.parse(before), LocalDate.parse(after));
         }
 
     public float PokemonUsage(String pokemom, String before, String after) {
-        return repository.getPokemonUsage(pokemom, before, after);
+        return repository.getPokemonUsage(pokemom, LocalDate.parse(before), LocalDate.parse(after));
         }
 
     public Boolean checkDate(String before, String after) {
