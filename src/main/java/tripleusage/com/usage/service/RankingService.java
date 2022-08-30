@@ -1,7 +1,6 @@
 package tripleusage.com.usage.service;
 
 import java.util.List;
-import java.sql.Date;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;

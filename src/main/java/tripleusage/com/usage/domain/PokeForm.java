@@ -120,10 +120,10 @@ public class PokeForm {
     @NotBlank(message = "入力していない欄があります") @DateCheck(message = "日付が間違っています")
     private String d;
 
-    private Pokemon returnPokemon(String poid, long paid, String p, String i, String a, String n, String m1, String m2, String m3, String m4, LocalDate d) {
+    private Pokemon returnPokemon(int poid, long paid, String p, String i, String a, String n, String m1, String m2, String m3, String m4, LocalDate d) {
         return new Pokemon(poid, paid, p, i, a, n, m1, m2, m3, m4, d);
     }
-    public List<Pokemon> getPokemonList(String id1, String id2, String id3, String id4, String id5, String id6, long paid){
+    public List<Pokemon> getPokemonList(int id1, int id2, int id3, int id4, int id5, int id6, long paid){
         List<Pokemon> pokemons = new java.util.ArrayList<Pokemon>();
         pokemons.add(returnPokemon(id1, paid, p1, i1, a1, n1, m1_1, m1_2, m1_3, m1_4, LocalDate.parse(d, DateTimeFormatter.ISO_DATE)));
         pokemons.add(returnPokemon(id2, paid, p2, i2, a2, n2, m2_1, m2_2, m2_3, m2_4, LocalDate.parse(d, DateTimeFormatter.ISO_DATE)));
