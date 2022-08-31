@@ -5,6 +5,8 @@
     <title>トリプルフリーデータベース</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
     <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/suggest.js}"></script>
+    <script th:src="@{/namelist.js}"></script>
     <meta name="viewport" content="width=device-width">
 </head>
 <body class="bg-primary bg-opacity-10">
@@ -24,6 +26,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/overview">このサイトについて</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://twitter.com/TripleUsage">Twitter</a>
                     </li>
                 </ul>
             </div>
@@ -70,81 +75,129 @@
             <div class="row justify-content-center">
                 <div class="col-md-4 m-1">
                     ポケモン① @ もちもの<br>
-                    <input type="text" name="p1" list="plist" placeholder="ポケモン" th:value="*{p1}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="i1" list="ilist" placeholder="もちもの" th:value="*{i1}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="p1" id="plist" placeholder="ポケモン" th:value="*{p1}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="i1" id="ilist" placeholder="もちもの" th:value="*{i1}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                     特性 - 性格<br>
-                    <input type="text" name="a1" list="alist" placeholder="特性" th:value="*{a1}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="n1" list="nlist" placeholder="性格" th:value="*{n1}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="a1" id="alist" placeholder="特性" th:value="*{a1}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="n1" id="nlist" placeholder="性格" th:value="*{n1}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                     技1 - 技2 - 技3 - 技4<br>
-                    <input type="text" name="m1_1" list="mlist" placeholder="わざ１" th:value="*{m1_1}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="m1_2" list="mlist" placeholder="わざ２" th:value="*{m1_2}" class="max-width-9em" th:errorclass="error"><br>
-                    <input type="text" name="m1_3" list="mlist" placeholder="わざ３" th:value="*{m1_3}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="m1_4" list="mlist" placeholder="わざ４" th:value="*{m1_4}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="m1_1" id="mlist" placeholder="わざ１" th:value="*{m1_1}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="m1_2" id="mlist" placeholder="わざ２" th:value="*{m1_2}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
+                    <input type="text" name="m1_3" id="mlist" placeholder="わざ３" th:value="*{m1_3}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="m1_4" id="mlist" placeholder="わざ４" th:value="*{m1_4}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                 </div>
                 <div class="col-md-4 m-1">
                     ポケモン② @ もちもの<br>
-                    <input type="text" name="p2" list="plist" placeholder="ポケモン" th:value="*{p2}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="i2" list="ilist" placeholder="もちもの" th:value="*{i2}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="p2" id="plist" placeholder="ポケモン" th:value="*{p2}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="i2" id="ilist" placeholder="もちもの" th:value="*{i2}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                     特性 - 性格<br>
-                    <input type="text" name="a2" list="alist" placeholder="特性" th:value="*{a2}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="n2" list="nlist" placeholder="性格" th:value="*{n2}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="a2" id="alist" placeholder="特性" th:value="*{a2}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="n2" id="nlist" placeholder="性格" th:value="*{n2}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                     技1 - 技2 - 技3 - 技4<br>
-                    <input type="text" name="m2_1" list="mlist" placeholder="わざ１" th:value="*{m2_1}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="m2_2" list="mlist" placeholder="わざ２" th:value="*{m2_2}" class="max-width-9em" th:errorclass="error"><br>
-                    <input type="text" name="m2_3" list="mlist" placeholder="わざ３" th:value="*{m2_3}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="m2_4" list="mlist" placeholder="わざ４" th:value="*{m2_4}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="m2_1" id="mlist" placeholder="わざ１" th:value="*{m2_1}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="m2_2" id="mlist" placeholder="わざ２" th:value="*{m2_2}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
+                    <input type="text" name="m2_3" id="mlist" placeholder="わざ３" th:value="*{m2_3}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="m2_4" id="mlist" placeholder="わざ４" th:value="*{m2_4}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                 </div>
                 <div class="col-md-4 m-1">
                     ポケモン③ @ もちもの<br>
-                    <input type="text" name="p3" list="plist" placeholder="ポケモン" th:value="*{p3}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="i3" list="ilist" placeholder="もちもの" th:value="*{i3}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="p3" id="plist" placeholder="ポケモン" th:value="*{p3}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="i3" id="ilist" placeholder="もちもの" th:value="*{i3}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                     特性 - 性格<br>
-                    <input type="text" name="a3" list="alist" placeholder="特性" th:value="*{a3}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="n3" list="nlist" placeholder="性格" th:value="*{n3}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="a3" id="alist" placeholder="特性" th:value="*{a3}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="n3" id="nlist" placeholder="性格" th:value="*{n3}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                     技1 - 技2 - 技3 - 技4<br>
-                    <input type="text" name="m3_1" list="mlist" placeholder="わざ１" th:value="*{m3_1}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="m3_2" list="mlist" placeholder="わざ２" th:value="*{m3_2}" class="max-width-9em" th:errorclass="error"><br>
-                    <input type="text" name="m3_3" list="mlist" placeholder="わざ３" th:value="*{m3_3}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="m3_4" list="mlist" placeholder="わざ４" th:value="*{m3_4}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="m3_1" id="mlist" placeholder="わざ１" th:value="*{m3_1}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="m3_2" id="mlist" placeholder="わざ２" th:value="*{m3_2}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
+                    <input type="text" name="m3_3" id="mlist" placeholder="わざ３" th:value="*{m3_3}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="m3_4" id="mlist" placeholder="わざ４" th:value="*{m3_4}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                 </div>
                 <div class="col-md-4 m-1">
                     ポケモン④ @ もちもの<br>
-                    <input type="text" name="p4" list="plist" placeholder="ポケモン" th:value="*{p4}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="i4" list="ilist" placeholder="もちもの" th:value="*{i4}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="p4" id="plist" placeholder="ポケモン" th:value="*{p4}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="i4" id="ilist" placeholder="もちもの" th:value="*{i4}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                     特性 - 性格<br>
-                    <input type="text" name="a4" list="alist" placeholder="特性" th:value="*{a4}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="n4" list="nlist" placeholder="性格" th:value="*{n4}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="a4" id="alist" placeholder="特性" th:value="*{a4}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="n4" id="nlist" placeholder="性格" th:value="*{n4}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                     技1 - 技2 - 技3 - 技4<br>
-                    <input type="text" name="m4_1" list="mlist" placeholder="わざ１" th:value="*{m4_1}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="m4_2" list="mlist" placeholder="わざ２" th:value="*{m4_2}" class="max-width-9em" th:errorclass="error"><br>
-                    <input type="text" name="m4_3" list="mlist" placeholder="わざ３" th:value="*{m4_3}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="m4_4" list="mlist" placeholder="わざ４" th:value="*{m4_4}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="m4_1" id="mlist" placeholder="わざ１" th:value="*{m4_1}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="m4_2" id="mlist" placeholder="わざ２" th:value="*{m4_2}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
+                    <input type="text" name="m4_3" id="mlist" placeholder="わざ３" th:value="*{m4_3}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="m4_4" id="mlist" placeholder="わざ４" th:value="*{m4_4}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                 </div>
                 <div class="col-md-4 m-1">
                     ポケモン⑤ @ もちもの<br>
-                    <input type="text" name="p5" list="plist" placeholder="ポケモン" th:value="*{p5}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="i5" list="ilist" placeholder="もちもの" th:value="*{i5}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="p5" id="plist" placeholder="ポケモン" th:value="*{p5}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="i5" id="ilist" placeholder="もちもの" th:value="*{i5}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                     特性 - 性格<br>
-                    <input type="text" name="a5" list="alist" placeholder="特性" th:value="*{a5}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="n5" list="nlist" placeholder="性格" th:value="*{n5}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="a5" id="alist" placeholder="特性" th:value="*{a5}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="n5" id="nlist" placeholder="性格" th:value="*{n5}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                     技1 - 技2 - 技3 - 技4<br>
-                    <input type="text" name="m5_1" list="mlist" placeholder="わざ１" th:value="*{m5_1}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="m5_2" list="mlist" placeholder="わざ２" th:value="*{m5_2}" class="max-width-9em" th:errorclass="error"><br>
-                    <input type="text" name="m5_3" list="mlist" placeholder="わざ３" th:value="*{m5_3}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="m5_4" list="mlist" placeholder="わざ４" th:value="*{m5_4}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="m5_1" id="mlist" placeholder="わざ１" th:value="*{m5_1}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="m5_2" id="mlist" placeholder="わざ２" th:value="*{m5_2}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
+                    <input type="text" name="m5_3" id="mlist" placeholder="わざ３" th:value="*{m5_3}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="m5_4" id="mlist" placeholder="わざ４" th:value="*{m5_4}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                 </div>
                 <div class="col-md-4 m-1">
                     ポケモン⑥ @ もちもの<br>
-                    <input type="text" name="p6" list="plist" placeholder="ポケモン" th:value="*{p6}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="i6" list="ilist" placeholder="もちもの" th:value="*{i6}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="p6" id="plist" placeholder="ポケモン" th:value="*{p6}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="i6" id="ilist" placeholder="もちもの" th:value="*{i6}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                     特性 - 性格<br>
-                    <input type="text" name="a6" list="alist" placeholder="特性" th:value="*{a6}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="n6" list="nlist" placeholder="性格" th:value="*{n6}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="a6" id="alist" placeholder="特性" th:value="*{a6}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="n6" id="nlist" placeholder="性格" th:value="*{n6}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                     技1 - 技2 - 技3 - 技4<br>
-                    <input type="text" name="m6_1" list="mlist" placeholder="わざ１" th:value="*{m6_1}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="m6_2" list="mlist" placeholder="わざ２" th:value="*{m6_2}" class="max-width-9em" th:errorclass="error"><br>
-                    <input type="text" name="m6_3" list="mlist" placeholder="わざ３" th:value="*{m6_3}" class="max-width-9em" th:errorclass="error">
-                    <input type="text" name="m6_4" list="mlist" placeholder="わざ４" th:value="*{m6_4}" class="max-width-9em" th:errorclass="error"><br>
+                    <input type="text" name="m6_1" id="mlist" placeholder="わざ１" th:value="*{m6_1}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="m6_2" id="mlist" placeholder="わざ２" th:value="*{m6_2}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
+                    <input type="text" name="m6_3" id="mlist" placeholder="わざ３" th:value="*{m6_3}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div>
+                    <input type="text" name="m6_4" id="mlist" placeholder="わざ４" th:value="*{m6_4}" class="max-width-9em" th:errorclass="error">
+                    <div id="suggest" style="display:none;"></div><br>
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -157,21 +210,6 @@
         </div>
     </form>
 
-        <datalist id="plist">
-            <option th:each="p : ${pokemonlist}" th:value="${p}" th:label="${p}"></option>
-        </datalist>
-        <datalist id="ilist">
-            <option th:each="i : ${itemlist}" th:value="${i}" th:label="${i}"></option>
-        </datalist>
-        <datalist id="alist">
-            <option th:each="a : ${abilitylist}" th:value="${a}" th:label="${a}"></option>
-        </datalist>
-        <datalist id="nlist">
-            <option th:each="n : ${naturelist}" th:value="${n}" th:label="${n}"></option>
-        </datalist>
-        <datalist id="mlist">
-            <option th:each="m : ${moveslist}" th:value="${m}" th:label="${m}"></option>
-        </datalist>
 
 <style>
     input.error {
@@ -186,15 +224,83 @@
     .max-width-60em {
         max-width: 60em;
     }
+    #suggest {
+      position: absolute;
+      background-color: #FFFFFF;
+      border: 1px solid #CCCCFF;
+      width: 252px;
+    }
+    #suggest div {
+      padding: 1px;
+      display: block;
+      width: 250px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    #suggest div.select{
+      color: #FFFFFF;
+      background-color: #3366FF;
+    }
+    #suggest div.over{
+      background-color: #99CCFF;
+    }
 </style>
 
 <script>
-    window.onload = function() {
+    var pokemonSuggest = function() {
+        new Suggest.Local(
+            "plist",
+            "suggest",
+            pnamelist,
+            {dispMax: 0, interval: 100}
+        );
+    }
+    var abilitySuggest = function() {
+        new Suggest.Local(
+            "alist",
+            "suggest",
+            anamelist,
+            {dispMax: 0, interval: 100}
+        );
+    }
+    var itemSuggest = function() {
+        new Suggest.Local(
+            "ilist",
+            "suggest",
+            inamelist,
+            {dispMax: 0, interval: 100}
+        );
+    }
+    var moveSuggest = function() {
+        new Suggest.Local(
+            "mlist",
+            "suggest",
+            mnamelist,
+            {dispMax: 0, interval: 100}
+        );
+    }
+    var personalSuggest = function() {
+        new Suggest.Local(
+            "nlist",
+            "suggest",
+            nnamelist,
+            {dispMax: 0, interval: 100}
+        );
+    }
+    var todayDate = function() {
         var today = new Date();
         today.setDate(today.getDate());
         var y = today.getFullYear();
         var m = ("0" + (today.getMonth() + 1)).slice(-2);
         var d = ("0" + today.getDate()).slice(-2);
         document.getElementById("d").value = y + "-" + m + "-" + d;
+    }
+    window.onload = function() {
+        todayDate();
+        pokemonSuggest();
+        itemSuggest();
+        abilitySuggest();
+        personalSuggest();
+        moveSuggest();
     }
 </script>
