@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import tripleusage.com.usage.domain.PokeForm;
 import tripleusage.com.usage.domain.Pokemon;
@@ -47,12 +48,12 @@ public class SubmissionController {
     }
 
     @GetMapping("/confirm")
-    public String getConfirm(Model model, HttpServletRequest request) {
+    public String getConfirm(Model model, HttpServletRequest request, UriComponentsBuilder builder) {
         HttpSession session = request.getSession();
         @SuppressWarnings("unchecked")
         List<Pokemon> pokemons = (List<Pokemon>) session.getAttribute("pokesubmission");
         if (pokemons == null) {
-            return "redirect:/form";
+            return "redirect:https://triplefreedatabase.net/form";
         }
         model.addAttribute("pokemons", pokemons);
         return "confirm";
@@ -65,14 +66,14 @@ public class SubmissionController {
         List<Pokemon> pokemons = (List<Pokemon>) session.getAttribute("pokesubmission");
         submissionService.submitPokemon(pokemons);
         session.removeAttribute("pokesubmission");
-        return "redirect:/form";
+        return "redirect:https://triplefreedatabase.net/form";
     }
 
     @PostMapping(params = "cancel", value = "/confirm")
     public String postCancel(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.removeAttribute("pokesubmission");
-        return "redirect:/form";
+        return "redirect:https://triplefreedatabase.net/form";
     }
 
     @PostMapping("/form")
@@ -88,6 +89,6 @@ public class SubmissionController {
         }
         List<Pokemon> pokemons = submissionService.getPokemonList(pokeform);
         session.setAttribute("pokesubmission", pokemons);
-        return "redirect:/confirm";
+        return "redirect:https://triplefreedatabase.net/confirm";
     }
 }

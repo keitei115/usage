@@ -10,7 +10,7 @@
 <body class="bg-primary bg-opacity-10">
     <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center mw-100">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/overview">トリプルフリーデータベース</a>
+            <a class="navbar-brand" href="/overview"><img border="0" src="/img/favicon.png">トリプルフリーデータベース</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -38,7 +38,7 @@
                 <form method="post">
                     <table>
                         <input type="date" name="before" value="2014-11-21" class="max-width-8em"> ~ <input type="date" name="after" id="d" th:value="${afterval}" class="max-width-8em">
-                        <input type="submit" class="btn btn-secondary mx-0" value="日付で絞る" name = "date">
+                        <input type="submit" class="btn btn-secondary mx-0" value="で絞る" name = "date">
                     </table>
                 </form>
             </div>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="col-xl-2 col-lg-2 col-md-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em max-width-60 px-0">
                         <table class="m-1">
-                            同じパーティに入ってるポケモン
+                            同じパーティのポケモン
                             <tr th:each="samepokemon , stat : ${samepartyranking}">
                                 <td th:text="${stat.count} + ':' + ${samepokemon.name} + ' ' + ${#numbers.formatDecimal(samepokemon.pokemontotal, 1, 1)} + '%' "></td>
                             </tr>
