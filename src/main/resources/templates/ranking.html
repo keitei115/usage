@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="row flex-nowrap justify-content-start">
-            <div class="col-xl-2 col-lg-2 col-md-2 col-xs-6 col-ms-6 max-width-40 max-height-ranking overflow-auto">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-xs-6 col-ms-6 max-width-40 max-height-ranking overflow-auto" id="pranking">
                 <form method="post">
                     <table class="table table-hover bg-light border border-1">
                         <tr th:each="pokemon , stat : ${pokeranking}">
@@ -64,7 +64,7 @@
                     <div class="col-12 rounded bg-light shadow-sm m-1 mw-100 left">
                         <p class="m-1" th:text="${pokemonname} + ' - 使用率 : ' + ${#numbers.formatDecimal(pokemonusage, 1, 1)} + '%' "></p>
                     </div>
-                    <div class="col-xl-2 col-lg-2 col-md-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em max-width-60 px-0">
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em px-0">
                         <table class="m-1">
                             <td>わざ</td>
                             <tr th:each="move , stat : ${moveranking}">
@@ -72,7 +72,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-xl-2 col-lg-2 col-md-4 col-xs-4 col-ms-4 rounded bg-light shadow-sm m-1 min-width-13em max-width-60 px-0">
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-xs-4 col-ms-4 rounded bg-light shadow-sm m-1 min-width-13em px-0">
                         <table class="m-1">
                             <td>とくせい</td>
                             <tr th:each="ability , stat : ${abilityranking}">
@@ -80,7 +80,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-xl-2 col-lg-2 col-md-4 col-ms-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em max-width-60 px-0">
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-xs-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em px-0">
                         <table class="m-1">
                             <td>せいかく</td>
                             <tr th:each="nature , stat : ${natureranking}">
@@ -88,7 +88,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-xl-2 col-lg-2 col-md-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em max-width-60 px-0">
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-xs-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em px-0">
                         <table class="m-1">
                             <td>もちもの</td>
                             <tr th:each="item , stat : ${itemranking}">
@@ -96,7 +96,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-xl-2 col-lg-2 col-md-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em max-width-60 px-0">
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-xs-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em px-0">
                         <table class="m-1">
                             同じパーティのポケモン
                             <tr th:each="samepokemon , stat : ${samepartyranking}">
@@ -109,15 +109,24 @@
         </div>
     </div>
     <script>
+        var positionY;
+        var STORAGE_KEY = "scrollY";
+        function checkOffset(){
+            positionY = pranking.scrollTop;
+            localStorage.setItem(STORAGE_KEY, positionY);
+        }
         window.onload = function() {
-            restore_scroll();
             var today = new Date();
             today.setDate(today.getDate());
             var y = today.getFullYear();
             var m = ("0" + (today.getMonth() + 1)).slice(-2);
             var d = ("0" + today.getDate()).slice(-2);
             document.getElementById("d").value = y + "-" + m + "-" + d;
-            keep_scroll()
+            positionY = localStorage.getItem(STORAGE_KEY);
+            if(positionY !== null){
+                pranking.scrollTo(0, positionY);
+            }
+            pranking.addEventListener("scroll", checkOffset, false);
         }
     </script>
     <style>
