@@ -109,11 +109,17 @@
         </div>
     </div>
     <script>
-        var positionY;
-        var STORAGE_KEY = "scrollY";
-        function checkOffset(){
-            positionY = pranking.scrollTop;
-            localStorage.setItem(STORAGE_KEY, positionY);
+        var positionYrank;
+        var positionYpage;
+        var STORAGE_KEY_RANK = "scrollYrank";
+        var STORAGE_KEY_PAGE = "scrollYpage";
+        function checkOffsetRank(){
+            positionYrank = pranking.scrollTop;
+            localStorage.setItem(STORAGE_KEY_RANK, positionYrank);
+        }
+        function checkOffsetPage(){
+            positionYpage = window.pageYOffset;
+            localStorage.setItem(STORAGE_KEY_PAGE, positionYpage);
         }
         window.onload = function() {
             var today = new Date();
@@ -122,11 +128,12 @@
             var m = ("0" + (today.getMonth() + 1)).slice(-2);
             var d = ("0" + today.getDate()).slice(-2);
             document.getElementById("d").value = y + "-" + m + "-" + d;
-            positionY = localStorage.getItem(STORAGE_KEY);
-            if(positionY !== null){
-                pranking.scrollTo(0, positionY);
-            }
-            pranking.addEventListener("scroll", checkOffset, false);
+            positionYrank = localStorage.getItem(STORAGE_KEY_RANK);
+            positionYpage = localStorage.getItem(STORAGE_KEY_PAGE);
+            if(positionYrank !== null){pranking.scrollTo(0, positionYrank);}
+            if(positionYpage !== null){scrollTo(0, positionYrank);}
+            pranking.addEventListener("scroll", checkOffsetRank, false);
+            window.addEventListener("scroll", checkOffsetPage, false);
         }
     </script>
     <style>
