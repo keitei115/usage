@@ -13,7 +13,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import tripleusage.com.usage.domain.PokeForm;
 import tripleusage.com.usage.domain.Pokemon;
@@ -48,7 +47,7 @@ public class SubmissionController {
     }
 
     @GetMapping("/confirm")
-    public String getConfirm(Model model, HttpServletRequest request, UriComponentsBuilder builder) {
+    public String getConfirm(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         @SuppressWarnings("unchecked")
         List<Pokemon> pokemons = (List<Pokemon>) session.getAttribute("pokesubmission");

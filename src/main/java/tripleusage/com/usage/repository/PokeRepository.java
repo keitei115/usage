@@ -20,7 +20,7 @@ public interface PokeRepository extends JpaRepository<Pokemon, String> {
     @Query(value = "SELECT NAME, CAST(COUNT(NAME) AS REAL) / (SELECT MAX(PARTYID) FROM POKEMON WHERE date BETWEEN ?1 AND ?2 ) * 100.0 AS pokemontotal FROM POKEMON WHERE DATE BETWEEN ?1 AND ?2 GROUP BY NAME ORDER BY pokemontotal DESC, name;", nativeQuery = true)
     List<PokemonTotal> getPokemonTotal(LocalDate before, LocalDate after);
 
-    @Query(value = "SELECT item, COUNT(item) / (SELECT CAST(COUNT(item) AS REAL) FROM pokemon WHERE name = ?1 AND date BETWEEN ?2 AND ?3) * 100.0 AS itemtotal FROM pokemon WHERE name = ?1 AND date BETWEEN ?2 AND ?3 GROUP BY item ORDER BY itemtotal, item DESC LIMIT 20", nativeQuery = true)
+    @Query(value = "SELECT item, COUNT(item) / (SELECT CAST(COUNT(item) AS REAL) FROM pokemon WHERE name = ?1 AND date BETWEEN ?2 AND ?3) * 100.0 AS itemtotal FROM pokemon WHERE name = ?1 AND date BETWEEN ?2 AND ?3 GROUP BY item ORDER BY itemtotal DESC, item LIMIT 20", nativeQuery = true)
     List<ItemTotal> getItemTotal(@Param("name") String name, LocalDate before, LocalDate after);
 
     @Query(value = "SELECT MOVE1 AS MOVE,COUNT(*) / (SELECT CAST(COUNT(*) AS REAL) FROM POKEMON WHERE NAME = ?1 AND date BETWEEN ?2 AND ?3 ) * 100.0 AS movetotal FROM (SELECT MOVE1 FROM POKEMON WHERE NAME = ?1 AND date BETWEEN ?2 AND ?3 UNION ALL SELECT MOVE2 FROM POKEMON WHERE NAME = ?1 AND date BETWEEN ?2 AND ?3 UNION ALL SELECT MOVE3 FROM POKEMON WHERE NAME = ?1 AND date BETWEEN ?2 AND ?3 UNION ALL SELECT MOVE4 FROM POKEMON WHERE NAME = ?1 AND date BETWEEN ?2 AND ?3) AS MOVES GROUP BY MOVE1 ORDER BY movetotal DESC, move LIMIT 30", nativeQuery = true)

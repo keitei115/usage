@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>トリプルフリーデータベース</title>
+    <script defer th:src="@{/ranking.js}"></script>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
-    <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/ranking.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js}"></script>
     <meta name="viewport" content="width=device-width">
 </head>
 <body class="bg-primary bg-opacity-10">
@@ -66,41 +68,42 @@
                     </div>
                     <div class="col-xl-2 col-lg-2 col-md-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em px-0">
                         <table class="m-1">
-                            <td>わざ</td>
+                            <th>わざ</th>
                             <tr th:each="move , stat : ${moveranking}">
-                                <td th:text="${stat.count} + ':' + ${move.move} + ' ' + ${#numbers.formatDecimal(move.movetotal, 1, 1)} + '%' "></td>
+                                <td th:text="|${stat.count}:${move.move} ${#numbers.formatDecimal(move.movetotal, 1, 1)}%|" th:style="|background: linear-gradient(to right, #dfffe6 ${move.movetotal}%, #eee ${move.movetotal}%)|"></td>
                             </tr>
                         </table>
                     </div>
                     <div class="col-xl-2 col-lg-2 col-md-4 col-xs-4 col-ms-4 rounded bg-light shadow-sm m-1 min-width-13em px-0">
                         <table class="m-1">
-                            <td>とくせい</td>
+                            <th>とくせい</th>
                             <tr th:each="ability , stat : ${abilityranking}">
-                                <td th:text="${stat.count} + ':' + ${ability.ability} + ' ' + ${#numbers.formatDecimal(ability.abilitytotal, 1, 1)} + '%' "></td>
+                                <td th:text="|${stat.count}:${ability.ability} ${#numbers.formatDecimal(ability.abilitytotal, 1, 1)}%|" th:style="|background: linear-gradient(to right, #ffe8e6 ${ability.abilitytotal}%, #eee ${ability.abilitytotal}%)|"></td>
                             </tr>
                         </table>
                     </div>
                     <div class="col-xl-2 col-lg-2 col-md-4 col-xs-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em px-0">
                         <table class="m-1">
-                            <td>せいかく</td>
+                            <th>せいかく</th>
                             <tr th:each="nature , stat : ${natureranking}">
-                                <td th:text="${stat.count} + ':' + ${nature.nature} + ' ' + ${#numbers.formatDecimal(nature.naturetotal, 1, 1)} + '%' "></td>
+                                <td th:text="|${stat.count}:${nature.nature} ${#numbers.formatDecimal(nature.naturetotal, 1, 1)}%|" th:style="|background: linear-gradient(to right, #fffbdf ${nature.naturetotal}%, #eee ${nature.naturetotal}%)|"></td>
                             </tr>
                         </table>
                     </div>
                     <div class="col-xl-2 col-lg-2 col-md-4 col-xs-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em px-0">
                         <table class="m-1">
-                            <td>もちもの</td>
+                            <th>もちもの</th>
                             <tr th:each="item , stat : ${itemranking}">
-                                <td th:text="${stat.count} + ':' + ${item.item} + ' ' + ${#numbers.formatDecimal(item.itemtotal, 1, 1)} + '%' "></td>
+                                <td th:text="|${stat.count}:${item.item} ${#numbers.formatDecimal(item.itemtotal, 1, 1)}%|" th:style="|background: linear-gradient(to right, #e8fcff ${item.itemtotal}%, #eee ${item.itemtotal}%)|"></td>
                             </tr>
                         </table>
                     </div>
                     <div class="col-xl-2 col-lg-2 col-md-4 col-xs-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em px-0">
                         <table class="m-1">
-                            同じパーティのポケモン
+                            <th>同じパーティのポケモン</th>
                             <tr th:each="samepokemon , stat : ${samepartyranking}">
-                                <td th:text="${stat.count} + ':' + ${samepokemon.name} + ' ' + ${#numbers.formatDecimal(samepokemon.pokemontotal, 1, 1)} + '%' "></td>
+                                <td th:text="|${stat.count}:${samepokemon.name} ${#numbers.formatDecimal(samepokemon.pokemontotal, 1, 1)}%|" 
+                                th:style="|background: linear-gradient(to right, #ffe2ff ${samepokemon.pokemontotal}%, #eee ${samepokemon.pokemontotal}%)|"></td>
                             </tr>
                         </table>
                     </div>
@@ -108,71 +111,4 @@
             </div>
         </div>
     </div>
-    <script>
-        var positionYrank;
-        var positionYpage;
-        var STORAGE_KEY_RANK = "scrollYrank";
-        var STORAGE_KEY_PAGE = "scrollYpage";
-        function checkOffsetRank(){
-            positionYrank = pranking.scrollTop;
-            localStorage.setItem(STORAGE_KEY_RANK, positionYrank);
-        }
-        function checkOffsetPage(){
-            positionYpage = window.pageYOffset;
-            localStorage.setItem(STORAGE_KEY_PAGE, positionYpage);
-        }
-        window.onload = function() {
-            var today = new Date();
-            today.setDate(today.getDate());
-            var y = today.getFullYear();
-            var m = ("0" + (today.getMonth() + 1)).slice(-2);
-            var d = ("0" + today.getDate()).slice(-2);
-            document.getElementById("d").value = y + "-" + m + "-" + d;
-            positionYrank = localStorage.getItem(STORAGE_KEY_RANK);
-            positionYpage = localStorage.getItem(STORAGE_KEY_PAGE);
-            if(positionYrank !== null){pranking.scrollTo(0, positionYrank);}
-            if(positionYpage !== null){scrollTo(0, positionYrank);}
-            pranking.addEventListener("scroll", checkOffsetRank, false);
-            window.addEventListener("scroll", checkOffsetPage, false);
-        }
-    </script>
-    <style>
-        .btn-link {
-            color: rgb(0, 0, 0);
-            text-decoration: none;
-        }
-        .right {
-            text-align: right;
-        }
-        .left {
-            text-align: left;
-        }
-        .max-width-40 {
-            max-width: 40%;
-        }
-        .max-width-60 {
-            max-width: 60%;
-        }
-        .font-size-09 {
-            font-size: 0.9rem;
-        }
-        .font-size-095 {
-            font-size: 0.95rem;
-        }
-        .max-height-ranking {
-            max-height: calc(100vh - 154px);
-        }
-        .width-100 {
-            width: 100%;
-        }
-        .height-100 {
-            height: 100%;
-        }
-        .min-width-13em {
-            min-width: 13em;
-        }
-        .max-width-8em {
-            max-width: 8em;
-        }
-    </style>
 </body>
