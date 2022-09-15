@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.time.LocalDate;
+
 import tripleusage.com.usage.domain.PokeForm;
 import tripleusage.com.usage.domain.Pokemon;
 import tripleusage.com.usage.service.NameList;
@@ -43,6 +45,7 @@ public class SubmissionController {
         model.addAttribute("abilitylist", nameList.getAbilityList());
         model.addAttribute("moveslist", nameList.getMoveList());
         model.addAttribute("naturelist", nameList.getPersonalList());
+        model.addAttribute("date", LocalDate.now().toString()); //日付フォームの初期値を今日の日付に
         return "form";
     }
 
@@ -84,6 +87,7 @@ public class SubmissionController {
             model.addAttribute("abilitylist", nameList.getAbilityList());
             model.addAttribute("moveslist", nameList.getMoveList());
             model.addAttribute("naturelist", nameList.getPersonalList());
+            model.addAttribute("date", LocalDate.now().toString());
             return "form";
         }
         List<Pokemon> pokemons = submissionService.getPokemonList(pokeform);

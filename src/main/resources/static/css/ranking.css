@@ -2,9 +2,6 @@
     color: rgb(0, 0, 0);
     text-decoration: none;
 }
-.left {
-    text-align: left;
-}
 .max-width-40 {
     max-width: 40%;
 }
@@ -18,13 +15,7 @@
     font-size: 0.95rem;
 }
 .max-height-ranking {
-    max-height: calc(100vh - 154px);
-}
-.width-100 {
-    width: 100%;
-}
-.height-100 {
-    height: 100%;
+    max-height: calc(100vh - 158px);
 }
 .min-width-13em {
     min-width: 13em;

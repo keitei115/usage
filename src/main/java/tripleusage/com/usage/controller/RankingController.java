@@ -20,22 +20,26 @@ import tripleusage.com.usage.service.RankingService;
 @Controller
 public class RankingController {
 
-    //private static final Logger logger = LoggerFactory.getLogger(RankingController.class);
+    // private static final Logger logger =
+    // LoggerFactory.getLogger(RankingController.class);
 
     @Autowired
     private RankingService rankingService;
 
+    private static final String RELEASEDATE = "2014-11-21"; // ORAS発売日
+    private static final String TODAYDATE = LocalDate.now().toString(); // 現在の日付
+
     @GetMapping("/ranking")
     public String getPokemonRanking(Model model, HttpServletRequest request) {
-        String before = "2014-11-21";
-        String after = LocalDate.now().toString();
+        String before = RELEASEDATE;
+        String after = TODAYDATE;
         String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
         HttpSession session = request.getSession();
         session.setAttribute("before", before);
         session.setAttribute("after", after);
         model.addAttribute("before", before.replace("-", "/"));
         model.addAttribute("after", after.replace("-", "/"));
-        model.addAttribute("afterval", after);
+        model.addAttribute("afterval", after); // 日付フォームの初期値を今日の日付に
         model.addAttribute("pokemonname", firstpokemom);
         model.addAttribute("pokeranking", rankingService.PokemonRanking(before, after));
         model.addAttribute("itemranking", rankingService.ItemRanking(firstpokemom, before, after));
@@ -50,8 +54,8 @@ public class RankingController {
     @PostMapping(params = "date", value = "/ranking")
     public String postDatePokemonRanking(@RequestParam String before, @RequestParam String after, Model model, HttpServletRequest request) {
         if (rankingService.checkDate(before, after) == false) {
-            before = "2014-11-21";
-            after = LocalDate.now().toString();
+            before = RELEASEDATE;
+            after = TODAYDATE;
             model.addAttribute("error", "検索日付が不正です。");
         }
         try {
@@ -59,8 +63,8 @@ public class RankingController {
         } catch (Exception e) {
             model.addAttribute("error", "検索範囲にポケモンがいませんでした。");
             HttpSession session = request.getSession();
-            before = "2014-11-21";
-            after = LocalDate.now().toString();
+            before = RELEASEDATE;
+            after = TODAYDATE;
             String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
             session.setAttribute("before", before);
             session.setAttribute("after", after);
@@ -95,10 +99,10 @@ public class RankingController {
         return "ranking";
     }
 
-    @PostMapping(params = "name" , value = "/ranking")
+    @PostMapping(params = "name", value = "/ranking")
     public String postPokemonRanking(@RequestParam String name, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        try{
+        try {
             String before = session.getAttribute("before").toString();
             String after = session.getAttribute("after").toString();
             model.addAttribute("before", before.replace("-", "/"));
@@ -113,8 +117,8 @@ public class RankingController {
             model.addAttribute("samepartyranking", rankingService.SamePartyRanking(name, before, after));
             model.addAttribute("pokemonusage", rankingService.PokemonUsage(name, before, after));
         } catch (Exception e) {
-            String before = "2014-11-21";
-            String after = LocalDate.now().toString();
+            String before = RELEASEDATE;
+            String after = TODAYDATE;
             String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
             session.setAttribute("before", before);
             session.setAttribute("after", after);

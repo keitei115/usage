@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>トリプルフリーデータベース</title>
-    <script defer th:src="@{/ranking.js}"></script>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/ranking.css}"/>
-    <script defer th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/ranking.css}"/>
+    <script defer th:src="@{/js/ranking.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
     <meta name="viewport" content="width=device-width">
 </head>
 <body class="bg-primary bg-opacity-10">
     <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center mw-100">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/overview"><img border="0" src="/img/favicon.png">トリプルフリーデータベース</a>
+            <a class="navbar-brand" href="/overview"><img border="0" class="w-auto h-auto" src="/img/favicon.png">トリプルフリーデータベース</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -56,14 +56,14 @@
                 <form method="post">
                     <table class="table table-hover bg-light border border-1">
                         <tr th:each="pokemon , stat : ${pokeranking}">
-                            <td><button type="submit" name="name" th:value="${pokemon.name}"  class="btn btn-link width-100 height-100 left font-size-095" th:text="${stat.count} + ' : ' + ${pokemon.name}"></button></td>
+                            <td><button type="submit" name="name" th:value="${pokemon.name}"  class="btn btn-link w-100 h-100 text-start font-size-095" th:text="${stat.count} + ' : ' + ${pokemon.name}"></button></td>
                         </tr>
                     </table>
                 </form>
             </div>
             <div class="col-xl-10 col-lg-10 col-md-10 col-ms-6 col-xs-6 font-size-09 max-height-ranking max-width-60 overflow-auto">
                 <div class="row flex-sm-wrap flex-md-wrap justify-content-start m-1 px-0">
-                    <div class="col-12 rounded bg-light shadow-sm m-1 mw-100 left">
+                    <div class="col-12 rounded bg-light shadow-sm m-1 mw-100 text-start">
                         <p class="m-1" th:text="${pokemonname} + ' - 使用率 : ' + ${#numbers.formatDecimal(pokemonusage, 1, 1)} + '%' "></p>
                     </div>
                     <div class="col-xl-2 col-lg-2 col-md-4 col-ms-4 col-xs-4 rounded bg-light shadow-sm m-1 min-width-13em px-0">

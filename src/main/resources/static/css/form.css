@@ -1,0 +1,15 @@
+input.error {
+    background-color: rgb(255, 190, 190);
+}
+
+.font-size-09 {
+    font-size: 0.9rem;
+}
+
+.max-width-9em {
+    max-width: 9em;
+}
+
+.max-width-60em {
+    max-width: 60em;
+}

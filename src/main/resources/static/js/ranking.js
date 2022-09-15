@@ -1,3 +1,4 @@
+// スクロール位置をLocalStrageに保存し、再現する
 var positionYrank;
 var positionYpage;
 var STORAGE_KEY_RANK = "scrollYrank";
@@ -10,16 +11,11 @@ function checkOffsetPage(){
     positionYpage = window.pageYOffset;
     localStorage.setItem(STORAGE_KEY_PAGE, positionYpage);
 }
-function getToday(){
-    var today = new Date();
-    document.getElementById("d").value = today.toLocaleDateString("ja-JP",{year:"numeric",month:"2-digit",day:"2-digit"}).replace(/\//g,"-");
-}
-window.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     positionYrank = localStorage.getItem(STORAGE_KEY_RANK);
     positionYpage = localStorage.getItem(STORAGE_KEY_PAGE);
     if(positionYrank !== null){pranking.scrollTo(0, positionYrank);}
-    if(positionYpage !== null){scrollTo(0, positionYrank);}
+    if(positionYpage !== null){scrollTo(0, positionYpage);}
     pranking.addEventListener("scroll", checkOffsetRank, false);
     window.addEventListener("scroll", checkOffsetPage, false);
-    getToday();
 })
