@@ -1,25 +1,22 @@
+#pranking {
+    max-width: 40%;
+    max-height: calc(100vh - 158px);
+}
+#pdetail {
+    max-width: 60%;
+    max-height: calc(100vh - 158px);
+    font-size: 0.9rem;
+}
 .btn-link {
     color: rgb(0, 0, 0);
     text-decoration: none;
 }
-.max-width-40 {
-    max-width: 40%;
-}
-.max-width-60 {
-    max-width: 60%;
-}
-.font-size-09 {
-    font-size: 0.9rem;
-}
-.font-size-095 {
+.pname {
     font-size: 0.95rem;
 }
-.max-height-ranking {
-    max-height: calc(100vh - 158px);
-}
-.min-width-13em {
+.pokedetails {
     min-width: 13em;
 }
-.max-width-8em {
+.inputdate {
     max-width: 8em;
 }

@@ -20,19 +20,17 @@ import tripleusage.com.usage.service.RankingService;
 @Controller
 public class RankingController {
 
-    // private static final Logger logger =
-    // LoggerFactory.getLogger(RankingController.class);
+    //private static final Logger logger = LoggerFactory.getLogger(RankingController.class);
 
     @Autowired
     private RankingService rankingService;
 
     private static final String RELEASEDATE = "2014-11-21"; // ORAS発売日
-    private static final String TODAYDATE = LocalDate.now().toString(); // 現在の日付
 
     @GetMapping("/ranking")
     public String getPokemonRanking(Model model, HttpServletRequest request) {
         String before = RELEASEDATE;
-        String after = TODAYDATE;
+        String after = LocalDate.now().toString();
         String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
         HttpSession session = request.getSession();
         session.setAttribute("before", before);
@@ -55,7 +53,7 @@ public class RankingController {
     public String postDatePokemonRanking(@RequestParam String before, @RequestParam String after, Model model, HttpServletRequest request) {
         if (rankingService.checkDate(before, after) == false) {
             before = RELEASEDATE;
-            after = TODAYDATE;
+            after = LocalDate.now().toString();
             model.addAttribute("error", "検索日付が不正です。");
         }
         try {
@@ -64,7 +62,7 @@ public class RankingController {
             model.addAttribute("error", "検索範囲にポケモンがいませんでした。");
             HttpSession session = request.getSession();
             before = RELEASEDATE;
-            after = TODAYDATE;
+            after = LocalDate.now().toString();
             String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
             session.setAttribute("before", before);
             session.setAttribute("after", after);
@@ -118,7 +116,7 @@ public class RankingController {
             model.addAttribute("pokemonusage", rankingService.PokemonUsage(name, before, after));
         } catch (Exception e) {
             String before = RELEASEDATE;
-            String after = TODAYDATE;
+            String after = LocalDate.now().toString();
             String firstpokemom = rankingService.PokemonRanking(before, after).get(0).getName();
             session.setAttribute("before", before);
             session.setAttribute("after", after);
