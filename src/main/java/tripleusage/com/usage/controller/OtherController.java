@@ -10,4 +10,14 @@ public class OtherController {
     public String getOverview(Model model) {
         return "overview";
     }
+
+    @GetMapping("/turn_counter")
+    public String getTurnCounter(Model model) {
+        return "turn_counter";
+    }
+
+    @GetMapping("/marking")
+    public String getMarkMemo(Model model) {
+        return "marking";
+    }
 }

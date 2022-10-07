@@ -13,8 +13,10 @@
         #container {
             font-size: 0.9rem;
         }
-        .max-width-form {
-            max-width: 9em;
+        .width-form {
+            width: 9em;
+            height: 2em;
+            padding: 1px 2px;
         }
         .ui-autocomplete.ui-widget {
             letter-spacing: normal;
@@ -49,13 +51,19 @@
                         <a class="nav-link" href="/overview">このサイトについて</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/turn_counter">ターン管理ツール</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/marking">マーキングメモツール</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="https://twitter.com/TripleUsage">Twitter</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <form method="post" th:object="${pokeForm}" class="rounded center-block m-3 bg-light shadow-sm" id="postform">
+    <form method="post" th:object="${pokeForm}" class="rounded m-3 bg-light shadow-sm" id="postform">
         <div class="container-fluid" id="container">
             <div class="row justify-content-center">
                 <div class="col-md-10">
@@ -65,7 +73,6 @@
                     <div class="collapse" id="collapseattention">
                         <div class="card card-body">
                             <ul>
-                                <li><strong>メガシンカするポケモンはメガシンカ前の特性を入力してください。</strong></li>
                                 <li>ポリゴン2、Vジェネレートなどの数字・英字は半角で入力してください。</li>
                                 <li>一部のフォルム違いのポケモンは名前の後に以下の文字を入れて区別し入力します。</li>
                                 <ul>
@@ -90,7 +97,8 @@
                                 <li>あいいろのたまとべにいろのたまを持たせた場合も"メガストーン"と入力してください。</li>
                                 <li>あなぬけのヒモのような効果のない持ち物を持たせる場合は"その他"と入力してください。</li>
                                 <li>持ち物を持たせない場合は"持ち物なし"と入力してください。</li>
-                                <li>入力した内容が間違ってる場合は入力欄が赤くなります。正確に入力してください。</li>
+                                <li>入力した内容が間違ってる場合は間違っている箇所が赤くなります。正確に入力してください。</li>
+                                <li><strong>どこかで入力した内容が間違ってる場合は特性の欄と日付の欄が間違っていなくてもリセットされてしまいます。もう一度入力し直してください。</strong></li>
                             </ul>
                         </div>
                     </div>
@@ -99,103 +107,104 @@
             <div class="row justify-content-center">
                 <div class="col-md-4 m-1">
                     ポケモン① @ もちもの<br>
-                    <input type="text" name="p1" id="p1list" placeholder="ポケモン" th:value="*{p1}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="i1" id="i1list" placeholder="もちもの" th:value="*{i1}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="p1" id="p1list" placeholder="ポケモン" th:value="*{p1}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="i1" id="i1list" placeholder="もちもの" th:value="*{i1}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                     特性 - 性格<br>
-                    <input type="text" name="a1" id="a1list" placeholder="特性" th:value="*{a1}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="n1" id="n1list" placeholder="性格" th:value="*{n1}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <select name="a1" id="a1list" class="width-form" th:errorclass="error"><option value="none">(特性)</option></select>
+                    <input type="text" name="n1" id="n1list" placeholder="性格" th:value="*{n1}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                     技1 - 技2 - 技3 - 技4<br>
-                    <input type="text" name="m1_1" id="m1_1list" placeholder="わざ１" th:value="*{m1_1}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="m1_2" id="m1_2list" placeholder="わざ２" th:value="*{m1_2}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m1_1" id="m1_1list" placeholder="わざ１" th:value="*{m1_1}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m1_2" id="m1_2list" placeholder="わざ２" th:value="*{m1_2}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
-                    <input type="text" name="m1_3" id="m1_3list" placeholder="わざ３" th:value="*{m1_3}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="m1_4" id="m1_4list" placeholder="わざ４" th:value="*{m1_4}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m1_3" id="m1_3list" placeholder="わざ３" th:value="*{m1_3}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m1_4" id="m1_4list" placeholder="わざ４" th:value="*{m1_4}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                 </div>
                 <div class="col-md-4 m-1">
                     ポケモン② @ もちもの<br>
-                    <input type="text" name="p2" id="p2list" placeholder="ポケモン" th:value="*{p2}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="i2" id="i2list" placeholder="もちもの" th:value="*{i2}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="p2" id="p2list" placeholder="ポケモン" th:value="*{p2}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="i2" id="i2list" placeholder="もちもの" th:value="*{i2}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                     特性 - 性格<br>
-                    <input type="text" name="a2" id="a2list" placeholder="特性" th:value="*{a2}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="n2" id="n2list" placeholder="性格" th:value="*{n2}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <select name="a2" id="a2list" class="width-form" th:errorclass="error"><option value="none">(特性)</option></select>
+                    <input type="text" name="n2" id="n2list" placeholder="性格" th:value="*{n2}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                     技1 - 技2 - 技3 - 技4<br>
-                    <input type="text" name="m2_1" id="m2_1list" placeholder="わざ１" th:value="*{m2_1}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="m2_2" id="m2_2list" placeholder="わざ２" th:value="*{m2_2}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m2_1" id="m2_1list" placeholder="わざ１" th:value="*{m2_1}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m2_2" id="m2_2list" placeholder="わざ２" th:value="*{m2_2}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
-                    <input type="text" name="m2_3" id="m2_3list" placeholder="わざ３" th:value="*{m2_3}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="m2_4" id="m2_4list" placeholder="わざ４" th:value="*{m2_4}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m2_3" id="m2_3list" placeholder="わざ３" th:value="*{m2_3}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m2_4" id="m2_4list" placeholder="わざ４" th:value="*{m2_4}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                 </div>
                 <div class="col-md-4 m-1">
                     ポケモン③ @ もちもの<br>
-                    <input type="text" name="p3" id="p3list" placeholder="ポケモン" th:value="*{p3}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="i3" id="i3list" placeholder="もちもの" th:value="*{i3}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="p3" id="p3list" placeholder="ポケモン" th:value="*{p3}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="i3" id="i3list" placeholder="もちもの" th:value="*{i3}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                     特性 - 性格<br>
-                    <input type="text" name="a3" id="a3list" placeholder="特性" th:value="*{a3}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="n3" id="n3list" placeholder="性格" th:value="*{n3}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <select name="a3" id="a3list" class="width-form" th:errorclass="error"><option value="none">(特性)</option></select>
+                    <input type="text" name="n3" id="n3list" placeholder="性格" th:value="*{n3}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                     技1 - 技2 - 技3 - 技4<br>
-                    <input type="text" name="m3_1" id="m3_1list" placeholder="わざ１" th:value="*{m3_1}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="m3_2" id="m3_2list" placeholder="わざ２" th:value="*{m3_2}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="m3_3" id="m3_3list" placeholder="わざ３" th:value="*{m3_3}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="m3_4" id="m3_4list" placeholder="わざ４" th:value="*{m3_4}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m3_1" id="m3_1list" placeholder="わざ１" th:value="*{m3_1}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m3_2" id="m3_2list" placeholder="わざ２" th:value="*{m3_2}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <br>
+                    <input type="text" name="m3_3" id="m3_3list" placeholder="わざ３" th:value="*{m3_3}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m3_4" id="m3_4list" placeholder="わざ４" th:value="*{m3_4}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                 </div>
                 <div class="col-md-4 m-1">
                     ポケモン④ @ もちもの<br>
-                    <input type="text" name="p4" id="p4list" placeholder="ポケモン" th:value="*{p4}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="i4" id="i4list" placeholder="もちもの" th:value="*{i4}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="p4" id="p4list" placeholder="ポケモン" th:value="*{p4}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="i4" id="i4list" placeholder="もちもの" th:value="*{i4}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                     特性 - 性格<br>
-                    <input type="text" name="a4" id="a4list" placeholder="特性" th:value="*{a4}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="n4" id="n4list" placeholder="性格" th:value="*{n4}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <select name="a4" id="a4list" class="width-form" th:errorclass="error"><option value="none">(特性)</option></select>
+                    <input type="text" name="n4" id="n4list" placeholder="性格" th:value="*{n4}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                     技1 - 技2 - 技3 - 技4<br>
-                    <input type="text" name="m4_1" id="m4_1list" placeholder="わざ１" th:value="*{m4_1}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="m4_2" id="m4_2list" placeholder="わざ２" th:value="*{m4_2}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m4_1" id="m4_1list" placeholder="わざ１" th:value="*{m4_1}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m4_2" id="m4_2list" placeholder="わざ２" th:value="*{m4_2}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
-                    <input type="text" name="m4_3" id="m4_3list" placeholder="わざ３" th:value="*{m4_3}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="m4_4" id="m4_4list" placeholder="わざ４" th:value="*{m4_4}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m4_3" id="m4_3list" placeholder="わざ３" th:value="*{m4_3}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m4_4" id="m4_4list" placeholder="わざ４" th:value="*{m4_4}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                 </div>
                 <div class="col-md-4 m-1">
                     ポケモン⑤ @ もちもの<br>
-                    <input type="text" name="p5" id="p5list" placeholder="ポケモン" th:value="*{p5}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="i5" id="i5list" placeholder="もちもの" th:value="*{i5}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="p5" id="p5list" placeholder="ポケモン" th:value="*{p5}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="i5" id="i5list" placeholder="もちもの" th:value="*{i5}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                     特性 - 性格<br>
-                    <input type="text" name="a5" id="a5list" placeholder="特性" th:value="*{a5}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="n5" id="n5list" placeholder="性格" th:value="*{n5}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <select name="a5" id="a5list" class="width-form" th:errorclass="error"><option value="none">(特性)</option></select>
+                    <input type="text" name="n5" id="n5list" placeholder="性格" th:value="*{n5}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                     技1 - 技2 - 技3 - 技4<br>
-                    <input type="text" name="m5_1" id="m5_1list" placeholder="わざ１" th:value="*{m5_1}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="m5_2" id="m5_2list" placeholder="わざ２" th:value="*{m5_2}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m5_1" id="m5_1list" placeholder="わざ１" th:value="*{m5_1}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m5_2" id="m5_2list" placeholder="わざ２" th:value="*{m5_2}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
-                    <input type="text" name="m5_3" id="m5_3list" placeholder="わざ３" th:value="*{m5_3}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="m5_4" id="m5_4list" placeholder="わざ４" th:value="*{m5_4}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m5_3" id="m5_3list" placeholder="わざ３" th:value="*{m5_3}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m5_4" id="m5_4list" placeholder="わざ４" th:value="*{m5_4}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                 </div>
                 <div class="col-md-4 m-1">
                     ポケモン⑥ @ もちもの<br>
-                    <input type="text" name="p6" id="p6list" placeholder="ポケモン" th:value="*{p6}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="i6" id="i6list" placeholder="もちもの" th:value="*{i6}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="p6" id="p6list" placeholder="ポケモン" th:value="*{p6}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="i6" id="i6list" placeholder="もちもの" th:value="*{i6}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                     特性 - 性格<br>
-                    <input type="text" name="a6" id="a6list" placeholder="特性" th:value="*{a6}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="n6" id="n6list" placeholder="性格" th:value="*{n6}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <select name="a6" id="a6list" class="width-form" th:errorclass="error"><option value="none">(特性)</option></select>
+                    <input type="text" name="n6" id="n6list" placeholder="性格" th:value="*{n6}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                     技1 - 技2 - 技3 - 技4<br>
-                    <input type="text" name="m6_1" id="m6_1list" placeholder="わざ１" th:value="*{m6_1}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="m6_2" id="m6_2list" placeholder="わざ２" th:value="*{m6_2}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m6_1" id="m6_1list" placeholder="わざ１" th:value="*{m6_1}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m6_2" id="m6_2list" placeholder="わざ２" th:value="*{m6_2}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
-                    <input type="text" name="m6_3" id="m6_3list" placeholder="わざ３" th:value="*{m6_3}" class="max-width-form" th:errorclass="error" autocomplete="off">
-                    <input type="text" name="m6_4" id="m6_4list" placeholder="わざ４" th:value="*{m6_4}" class="max-width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m6_3" id="m6_3list" placeholder="わざ３" th:value="*{m6_3}" class="width-form" th:errorclass="error" autocomplete="off">
+                    <input type="text" name="m6_4" id="m6_4list" placeholder="わざ４" th:value="*{m6_4}" class="width-form" th:errorclass="error" autocomplete="off">
                     <br>
                 </div>
             </div>
